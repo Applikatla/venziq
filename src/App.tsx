@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { useReducedMotion } from 'motion/react'
 import { Nav } from './components/layout/Nav'
 import { SiteFooter } from './components/layout/SiteFooter'
@@ -7,8 +7,11 @@ import { initLenis } from './lib/scroll'
 import { Hero } from './sections/Hero'
 import { ProofBand } from './sections/ProofBand'
 import { Problem } from './sections/Problem'
-import { ChaosToOrder } from './components/canvas/ChaosToOrder'
 import { Platform } from './sections/Platform'
+
+const ChaosToOrder = lazy(() =>
+  import('./components/canvas/ChaosToOrder').then((m) => ({ default: m.ChaosToOrder })),
+)
 import { CorePattern } from './sections/CorePattern'
 import { Playground } from './sections/Playground'
 import { Architecture } from './sections/Architecture'
@@ -31,7 +34,9 @@ export default function App() {
         <Hero />
         <ProofBand />
         <Problem />
-        <ChaosToOrder />
+        <Suspense fallback={<div className="h-[70vh]" />}>
+          <ChaosToOrder />
+        </Suspense>
         <Platform />
         <CorePattern />
         <Playground />

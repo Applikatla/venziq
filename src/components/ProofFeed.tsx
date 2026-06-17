@@ -112,12 +112,11 @@ export function ProofFeed() {
             const typingThis = isActive && !reduce && phase === 'typing'
             const payloadText = typingThis ? row.payload.slice(0, typed) : row.payload
             const statusVisible = reduce || !isActive || phase === 'dwell'
-            const dim = (rows.length - 1 - i) * 0.28
             return (
               <motion.div
                 key={row.id}
                 initial={reduce ? false : { opacity: 0, y: 10 }}
-                animate={{ opacity: 1 - dim, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
                 className="flex items-center gap-3 whitespace-nowrap"

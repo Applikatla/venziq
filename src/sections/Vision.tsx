@@ -1,8 +1,12 @@
+import { lazy, Suspense } from 'react'
 import { ScrollReveal } from '../components/ScrollReveal'
 import { MagneticButton } from '../components/MagneticButton'
-import { NodeLattice } from '../components/canvas/NodeLattice'
 import { scrollToId } from '../lib/scroll'
 import { CONTACT_ID } from '../lib/nav'
+
+const NodeLattice = lazy(() =>
+  import('../components/canvas/NodeLattice').then((m) => ({ default: m.NodeLattice })),
+)
 
 /*
   The closing moment. Forced dark in both themes (the darkest beat of the page),
@@ -17,7 +21,9 @@ export function Vision() {
       style={{ background: 'var(--bg)', color: 'var(--ink)' }}
     >
       <div className="pointer-events-none absolute inset-0 opacity-70">
-        <NodeLattice className="absolute inset-0" density={30000} />
+        <Suspense fallback={null}>
+          <NodeLattice className="absolute inset-0" density={30000} />
+        </Suspense>
       </div>
       <div
         aria-hidden="true"

@@ -230,10 +230,7 @@ function PipeRow({
 }) {
   const showStatus = done
   return (
-    <div
-      className="flex items-center gap-3 whitespace-nowrap transition-opacity"
-      style={{ opacity: value || pending || done ? 1 : 0.4 }}
-    >
+    <div className="flex items-center gap-3 whitespace-nowrap">
       <span className="w-28 shrink-0" style={{ color: 'var(--accent-2)' }}>
         {channel}
       </span>
@@ -244,7 +241,6 @@ function PipeRow({
         className="shrink-0 text-right"
         style={{
           color: showStatus ? (statusAccent ? 'var(--accent)' : 'var(--muted)') : 'var(--faint)',
-          opacity: showStatus ? 1 : 0.3,
         }}
       >
         {showStatus ? status : '···'}

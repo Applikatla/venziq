@@ -156,7 +156,7 @@ export function ChaosToOrder() {
 
   return (
     <div ref={containerRef} className="relative h-[70vh] overflow-hidden" aria-hidden="true">
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
+      <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 h-full w-full" />
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         {reduce ? (
           <span className="mono-eyebrow" style={{ color: 'var(--accent)' }}>

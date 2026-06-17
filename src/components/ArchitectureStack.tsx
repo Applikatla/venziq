@@ -56,7 +56,6 @@ export function ArchitectureStack() {
                 onMouseLeave={() => setActive(-1)}
                 onFocus={() => setActive(i)}
                 onBlur={() => setActive(-1)}
-                aria-label={`${layer.name}. ${layer.desc}`}
                 className="glass flex w-full items-center gap-4 px-5 py-4 text-left transition-all duration-300"
                 style={{
                   transform: isActive && !reduce ? 'translateX(10px)' : 'none',
@@ -65,6 +64,7 @@ export function ArchitectureStack() {
                 }}
               >
                 <span
+                  aria-hidden="true"
                   className="font-mono text-xs"
                   style={{ color: isActive ? 'var(--accent)' : 'var(--faint)' }}
                 >
