@@ -20,7 +20,7 @@ const POINTS: Point[] = [
 
 export function WhyVenziq() {
   return (
-    <Section panel>
+    <Section id="why" panel>
       <div className="max-w-3xl">
         <Eyebrow>Why VENZIQ</Eyebrow>
         <DecodeHeadline
