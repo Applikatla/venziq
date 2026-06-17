@@ -1,10 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>venziq</title>
+    <meta
+      name="description"
+      content="VENZIQ — trust infrastructure for the AI economy. Verifiable, secure, private, and compliant infrastructure for autonomous AI agents."
+    />
+    <meta name="theme-color" content="#0a0d12" />
+    <title>VENZIQ — Trust Infrastructure for the AI Economy</title>
+    <script>
+      // Set theme before first paint to avoid a flash. Dark is the default.
+      (function () {
+        try {
+          var stored = localStorage.getItem('venziq-theme');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
