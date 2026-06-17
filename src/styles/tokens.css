@@ -275,6 +275,22 @@
   }
 }
 
+/*
+  Threat <-> Trust world switch. [data-unprotected] flips the dominant accent to
+  the threat tone (so all the "verified" lime reads as risk) and degrades the
+  content. Placed after the theme blocks so it wins on equal specificity.
+*/
+[data-unprotected] {
+  --accent: var(--threat);
+  --accent-soft: var(--threat-soft);
+  --accent-2: var(--threat);
+  --grad-brand: linear-gradient(135deg, var(--threat) 0%, var(--threat) 100%);
+}
+[data-unprotected] main {
+  filter: grayscale(0.3) contrast(1.04);
+  transition: filter 0.4s ease;
+}
+
 @keyframes vzqpulse {
   0%,
   100% {

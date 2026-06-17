@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Menu, X, Command } from 'lucide-react'
 import { Logo } from '../Logo'
 import { ThemeToggle } from '../ThemeToggle'
+import { ShieldToggle } from '../Shield'
 import { openCommandPalette } from '../../lib/command'
 import { NAV_LINKS, openContact } from '../../lib/nav'
 import { scrollToId, scrollToTop } from '../../lib/scroll'
@@ -107,6 +108,7 @@ export function Nav() {
 
         <div className="flex items-center gap-3">
           <SessionDot />
+          <ShieldToggle className="hidden lg:inline-flex" />
           <button
             onClick={() => openCommandPalette()}
             aria-label="Open command palette"

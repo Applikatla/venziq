@@ -8,6 +8,7 @@ import { ProofSpine } from './components/ProofSpine'
 import { TrustHUD } from './components/hud/TrustHUD'
 import { CommandPalette } from './components/CommandPalette'
 import { BootSequence } from './components/BootSequence'
+import { ShieldOverlay } from './components/Shield'
 import { initLenis } from './lib/scroll'
 import { Hero } from './sections/Hero'
 import { ProofBand } from './sections/ProofBand'
@@ -36,6 +37,7 @@ export default function App() {
       <BootSequence />
       <CursorRing />
       <AutonomousAgent />
+      <ShieldOverlay />
       <ProofSpine />
       <TrustHUD />
       <CommandPalette />

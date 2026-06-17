@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Search, ArrowRight, CornerDownLeft } from 'lucide-react'
 import { useTheme } from '../lib/theme-context'
 import { NAV_LINKS, openContact } from '../lib/nav'
+import { toggleProtection } from '../lib/protection'
 import { scrollToId } from '../lib/scroll'
 import { COMMAND_OPEN_EVENT } from '../lib/command'
 
@@ -46,6 +47,7 @@ export function CommandPalette() {
       { id: 'go-playground', label: 'Go to playground', hint: 'section', run: () => scrollToId('playground') },
       ...nav,
       { id: 'contact', label: "Let's connect", hint: 'email', run: openContact },
+      { id: 'protection', label: 'Toggle protection (threat ⇄ trust)', hint: 'demo', run: toggleProtection },
       { id: 'toggle-theme', label: 'Toggle light / dark theme', hint: 'theme', run: toggle },
     ]
   }, [toggle])
