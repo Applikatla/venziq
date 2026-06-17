@@ -10,6 +10,7 @@ import { Problem } from './sections/Problem'
 import { ChaosToOrder } from './components/canvas/ChaosToOrder'
 import { Platform } from './sections/Platform'
 import { CorePattern } from './sections/CorePattern'
+import { Playground } from './sections/Playground'
 import { Architecture } from './sections/Architecture'
 import { WhyVenziq } from './sections/WhyVenziq'
 import { Vision } from './sections/Vision'
@@ -33,6 +34,7 @@ export default function App() {
         <ChaosToOrder />
         <Platform />
         <CorePattern />
+        <Playground />
         <Architecture />
         <WhyVenziq />
         <Vision />
