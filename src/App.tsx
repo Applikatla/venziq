@@ -6,6 +6,7 @@ import { CursorRing } from './components/CursorRing'
 import { ProofSpine } from './components/ProofSpine'
 import { TrustHUD } from './components/hud/TrustHUD'
 import { CommandPalette } from './components/CommandPalette'
+import { BootSequence } from './components/BootSequence'
 import { initLenis } from './lib/scroll'
 import { Hero } from './sections/Hero'
 import { ProofBand } from './sections/ProofBand'
@@ -31,6 +32,7 @@ export default function App() {
 
   return (
     <>
+      <BootSequence />
       <CursorRing />
       <ProofSpine />
       <TrustHUD />

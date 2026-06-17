@@ -6,6 +6,27 @@ import { ThemeToggle } from '../ThemeToggle'
 import { openCommandPalette } from '../../lib/command'
 import { NAV_LINKS, CONTACT_ID } from '../../lib/nav'
 import { scrollToId, scrollToTop } from '../../lib/scroll'
+import { useTrust } from '../../lib/trust-context'
+
+function SessionDot() {
+  const { verified, total } = useTrust()
+  const complete = verified.length >= total
+  return (
+    <span
+      className="hidden items-center gap-1.5 font-mono text-[0.62rem] text-faint lg:inline-flex"
+      title={`Session integrity ${verified.length}/${total}`}
+    >
+      <span
+        className="inline-block h-1.5 w-1.5 rounded-full"
+        style={{
+          background: complete ? 'var(--accent)' : 'var(--accent-2)',
+          animation: complete ? 'none' : 'vzqpulse 1.6s ease-in-out infinite',
+        }}
+      />
+      {verified.length}/{total}
+    </span>
+  )
+}
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -85,6 +106,7 @@ export function Nav() {
         </div>
 
         <div className="flex items-center gap-3">
+          <SessionDot />
           <button
             onClick={() => openCommandPalette()}
             aria-label="Open command palette"

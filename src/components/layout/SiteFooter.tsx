@@ -1,8 +1,12 @@
+import { Check } from 'lucide-react'
 import { LogoMark } from '../Logo'
 import { NAV_LINKS, CONTACT_URL } from '../../lib/nav'
 import { scrollToId } from '../../lib/scroll'
+import { useTrust } from '../../lib/trust-context'
 
 export function SiteFooter() {
+  const { sessionId, verified, total } = useTrust()
+  const sealed = verified.length >= total
   return (
     <footer className="border-t border-hairline" id={'contact'}>
       <div className="shell py-16">
@@ -68,7 +72,19 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-3 border-t border-hairline pt-6 sm:flex-row sm:items-center">
+        {/* page integrity seal */}
+        <div
+          className="mt-14 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-[var(--radius)] border border-hairline px-4 py-3 font-mono text-[0.7rem]"
+        >
+          <span className="flex items-center gap-1.5" style={{ color: sealed ? 'var(--accent)' : 'var(--muted)' }}>
+            {sealed && <Check size={12} aria-hidden="true" />}
+            page integrity {sealed ? 'verified' : `${verified.length}/${total}`}
+          </span>
+          <span className="text-faint" aria-hidden="true">·</span>
+          <span className="text-faint">session {sessionId}</span>
+        </div>
+
+        <div className="mt-8 flex flex-col items-start justify-between gap-3 border-t border-hairline pt-6 sm:flex-row sm:items-center">
           <p className="mono-eyebrow" style={{ letterSpacing: '0.16em' }}>
             © 2026 VENZIQ
           </p>
