@@ -20,7 +20,6 @@ export function CursorRing() {
   const [finePointer] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches,
   )
-  const [visible, setVisible] = useState(false)
   const [scanning, setScanning] = useState(false)
   const [trail, setTrail] = useState<TrailDot[]>([])
   const last = useRef({ x: 0, y: 0 })
@@ -37,7 +36,6 @@ export function CursorRing() {
     const move = (e: PointerEvent) => {
       x.set(e.clientX)
       y.set(e.clientY)
-      setVisible(true)
       // drop a dissolving proof glyph every ~48px of travel
       const dx = e.clientX - last.current.x
       const dy = e.clientY - last.current.y
@@ -49,8 +47,6 @@ export function CursorRing() {
         window.setTimeout(() => setTrail((t) => t.filter((d) => d.id !== id)), 620)
       }
     }
-    const leave = () => setVisible(false)
-
     const over = (e: Event) => {
       const target = (e.target as HTMLElement | null)?.closest('[data-scan]')
       if (!target) return
@@ -71,12 +67,10 @@ export function CursorRing() {
     }
 
     window.addEventListener('pointermove', move, { passive: true })
-    window.addEventListener('pointerout', leave)
     document.addEventListener('pointerover', over, true)
     document.addEventListener('pointerout', out, true)
     return () => {
       window.removeEventListener('pointermove', move)
-      window.removeEventListener('pointerout', leave)
       document.removeEventListener('pointerover', over, true)
       document.removeEventListener('pointerout', out, true)
     }
@@ -104,10 +98,11 @@ export function CursorRing() {
         </AnimatePresence>
       </div>
 
+    {/* reticle: only shown while scanning a [data-scan] element (no idle ring) */}
     <motion.div
       aria-hidden="true"
       className="pointer-events-none fixed left-0 top-0 z-[60] hidden -translate-x-1/2 -translate-y-1/2 lg:block"
-      style={{ x: sx, y: sy, opacity: visible ? 1 : 0, transition: 'opacity 0.2s' }}
+      style={{ x: sx, y: sy, opacity: scanning ? 1 : 0, transition: 'opacity 0.2s' }}
     >
       <motion.div
         animate={{
