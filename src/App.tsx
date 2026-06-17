@@ -10,6 +10,7 @@ import { CommandPalette } from './components/CommandPalette'
 import { BootSequence } from './components/BootSequence'
 import { ShieldOverlay } from './components/Shield'
 import { VerifySweep } from './components/VerifySweep'
+import { HelpOverlay } from './components/HelpOverlay'
 import { initLenis } from './lib/scroll'
 import { Hero } from './sections/Hero'
 import { ProofBand } from './sections/ProofBand'
@@ -41,6 +42,7 @@ export default function App() {
       <AutonomousAgent />
       <ShieldOverlay />
       <VerifySweep />
+      <HelpOverlay />
       <ProofSpine />
       <TrustHUD />
       <CommandPalette />
