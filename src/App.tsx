@@ -9,6 +9,7 @@ import { TrustHUD } from './components/hud/TrustHUD'
 import { CommandPalette } from './components/CommandPalette'
 import { BootSequence } from './components/BootSequence'
 import { ShieldOverlay } from './components/Shield'
+import { VerifySweep } from './components/VerifySweep'
 import { initLenis } from './lib/scroll'
 import { Hero } from './sections/Hero'
 import { ProofBand } from './sections/ProofBand'
@@ -38,6 +39,7 @@ export default function App() {
       <CursorRing />
       <AutonomousAgent />
       <ShieldOverlay />
+      <VerifySweep />
       <ProofSpine />
       <TrustHUD />
       <CommandPalette />

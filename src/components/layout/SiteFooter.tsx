@@ -1,4 +1,5 @@
-import { Check } from 'lucide-react'
+import { useState } from 'react'
+import { Check, Copy } from 'lucide-react'
 import { LogoMark } from '../Logo'
 import { NAV_LINKS, CONTACT_URL, CONTACT_MAILTO } from '../../lib/nav'
 import { scrollToId } from '../../lib/scroll'
@@ -7,6 +8,20 @@ import { useTrust } from '../../lib/trust-context'
 export function SiteFooter() {
   const { sessionId, verified, total } = useTrust()
   const sealed = verified.length >= total
+  const [copied, setCopied] = useState(false)
+
+  const copyProof = () => {
+    const text = `VENZIQ trust session ${sessionId} · ${verified.length}/${total} verified${
+      sealed ? ' · sealed' : ''
+    } — venziq.com`
+    navigator.clipboard?.writeText(text).then(
+      () => {
+        setCopied(true)
+        window.setTimeout(() => setCopied(false), 1600)
+      },
+      () => {},
+    )
+  }
   return (
     <footer className="border-t border-hairline" id={'contact'}>
       <div className="shell py-16">
@@ -87,6 +102,15 @@ export function SiteFooter() {
           </span>
           <span className="text-faint" aria-hidden="true">·</span>
           <span className="text-faint">session {sessionId}</span>
+          <button
+            type="button"
+            onClick={copyProof}
+            className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-hairline px-3 py-1 transition-colors hover:text-ink"
+            style={{ color: copied ? 'var(--accent)' : 'var(--muted)' }}
+          >
+            {copied ? <Check size={12} aria-hidden="true" /> : <Copy size={12} aria-hidden="true" />}
+            {copied ? 'copied' : 'copy proof'}
+          </button>
         </div>
 
         <div className="mt-8 flex flex-col items-start justify-between gap-3 border-t border-hairline pt-6 sm:flex-row sm:items-center">
