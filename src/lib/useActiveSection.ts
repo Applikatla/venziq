@@ -15,11 +15,19 @@ export function useActiveSection(): string | null {
     const compute = () => {
       queued = false
       const line = (window.innerHeight || 800) * 0.3
+      // The nav order is a marketing choice and does NOT match the page's DOM
+      // order, so we can't rely on iteration order. The active section is the
+      // one whose top has crossed above the line and sits closest to it.
       let current: string | null = null
+      let bestTop = -Infinity
       for (const { id } of NAV_LINKS) {
         const el = document.getElementById(id)
         if (!el) continue
-        if (el.getBoundingClientRect().top - line <= 0) current = id
+        const top = el.getBoundingClientRect().top - line
+        if (top <= 0 && top > bestTop) {
+          bestTop = top
+          current = id
+        }
       }
       setActive(current)
     }
