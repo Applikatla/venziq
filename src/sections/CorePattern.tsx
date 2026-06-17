@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
 import { Landmark, HeartPulse, Building2, type LucideIcon } from 'lucide-react'
 import { Plus } from 'lucide-react'
@@ -8,11 +8,19 @@ import { SpecimenCard } from '../components/SpecimenCard'
 import { ScrollReveal } from '../components/ScrollReveal'
 import { useReveal } from '../lib/useReveal'
 
-const TERMS = ['AI action', 'ZK verification', 'blockchain audit']
+const TERMS = ['AI action', 'ZK verification', 'blockchain audit'] as const
+
+const EXPLAIN: Record<string, string> = {
+  'AI action': 'An autonomous agent performs a real operation.',
+  'ZK verification': 'A zero-knowledge proof confirms it was authorized — without revealing the data.',
+  'blockchain audit': 'An immutable record is sealed on-chain for anyone to verify.',
+  'trusted autonomy': 'The agent acts on its own, and every action stays provable.',
+}
 
 function EquationFlow() {
   const reduce = useReducedMotion()
   const { ref, shown } = useReveal<HTMLDivElement>()
+  const [hovered, setHovered] = useState<string | null>(null)
 
   const parent: Variants = {
     hidden: {},
@@ -24,51 +32,56 @@ function EquationFlow() {
   }
 
   return (
-    <motion.div
-      ref={ref}
-      className="relative flex flex-col items-center gap-4 md:flex-row md:flex-wrap md:justify-center"
-      variants={reduce ? undefined : parent}
-      initial={reduce ? undefined : 'hidden'}
-      animate={reduce ? undefined : shown ? 'show' : 'hidden'}
-    >
-      {TERMS.map((term, i) => (
-        <Fragment key={term}>
-          {i > 0 && (
-            <motion.span
+    <div>
+      <motion.div
+        ref={ref}
+        className="relative flex flex-col items-center gap-4 md:flex-row md:flex-wrap md:justify-center"
+        variants={reduce ? undefined : parent}
+        initial={reduce ? undefined : 'hidden'}
+        animate={reduce ? undefined : shown ? 'show' : 'hidden'}
+      >
+        {TERMS.map((term, i) => (
+          <Fragment key={term}>
+            {i > 0 && (
+              <motion.span variants={reduce ? undefined : node} className="text-faint" aria-hidden="true">
+                <Plus size={16} />
+              </motion.span>
+            )}
+            <motion.button
+              type="button"
               variants={reduce ? undefined : node}
-              className="text-faint"
-              aria-hidden="true"
+              onMouseEnter={() => setHovered(term)}
+              onMouseLeave={() => setHovered(null)}
+              onFocus={() => setHovered(term)}
+              onBlur={() => setHovered(null)}
+              className="rounded-full border bg-glass px-4 py-2 font-mono text-sm text-ink transition-colors"
+              style={{ borderColor: hovered === term ? 'var(--accent)' : 'var(--hairline)' }}
             >
-              <Plus size={16} />
-            </motion.span>
-          )}
-          <motion.span
-            variants={reduce ? undefined : node}
-            className="rounded-full border border-hairline bg-glass px-4 py-2 font-mono text-sm text-ink"
-          >
-            {term}
-          </motion.span>
-        </Fragment>
-      ))}
-      <motion.span
-        variants={reduce ? undefined : node}
-        className="px-1 font-mono text-lg text-faint"
-        aria-hidden="true"
-      >
-        =
-      </motion.span>
-      <motion.span
-        variants={reduce ? undefined : node}
-        className="rounded-full px-5 py-2.5 font-mono text-sm font-medium"
-        style={{
-          background: 'var(--accent)',
-          color: 'var(--accent-ink)',
-          boxShadow: '0 0 40px var(--accent-soft)',
-        }}
-      >
-        trusted autonomy
-      </motion.span>
-    </motion.div>
+              {term}
+            </motion.button>
+          </Fragment>
+        ))}
+        <motion.span variants={reduce ? undefined : node} className="px-1 font-mono text-lg text-faint" aria-hidden="true">
+          =
+        </motion.span>
+        <motion.button
+          type="button"
+          variants={reduce ? undefined : node}
+          onMouseEnter={() => setHovered('trusted autonomy')}
+          onMouseLeave={() => setHovered(null)}
+          onFocus={() => setHovered('trusted autonomy')}
+          onBlur={() => setHovered(null)}
+          className="rounded-full px-5 py-2.5 font-mono text-sm font-medium"
+          style={{ background: 'var(--accent)', color: 'var(--accent-ink)', boxShadow: '0 0 40px var(--accent-soft)' }}
+        >
+          trusted autonomy
+        </motion.button>
+      </motion.div>
+
+      <p className="mt-6 text-center text-sm text-muted" aria-live="polite">
+        {hovered ? EXPLAIN[hovered] : 'Hover each term to inspect the flow.'}
+      </p>
+    </div>
   )
 }
 

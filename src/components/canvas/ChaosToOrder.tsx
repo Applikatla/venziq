@@ -43,14 +43,14 @@ export function ChaosToOrder() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ['start start', 'end end'],
   })
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     progress.current = v
   })
 
-  const unverifiedOpacity = useTransform(scrollYProgress, [0.28, 0.52], [0.85, 0])
-  const verifiedOpacity = useTransform(scrollYProgress, [0.5, 0.72], [0, 1])
+  const unverifiedOpacity = useTransform(scrollYProgress, [0.1, 0.4], [0.85, 0])
+  const verifiedOpacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 1])
 
   const canvasRef = useAnimatedCanvas(
     (): Renderer => {
@@ -92,7 +92,7 @@ export function ChaosToOrder() {
 
         const raw = forceOrder
           ? 1
-          : Math.min(1, Math.max(0, (progress.current - 0.3) / 0.4))
+          : Math.min(1, Math.max(0, (progress.current - 0.12) / 0.5))
         const e = easeInOut(raw)
 
         ctx.font = '12px JetBrains Mono, ui-monospace, monospace'
@@ -155,29 +155,41 @@ export function ChaosToOrder() {
   )
 
   return (
-    <div ref={containerRef} className="relative h-[70vh] overflow-hidden" aria-hidden="true">
-      <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 h-full w-full" />
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        {reduce ? (
-          <span className="mono-eyebrow" style={{ color: 'var(--accent)' }}>
-            verified order
-          </span>
-        ) : (
-          <div className="relative font-mono text-sm tracking-[0.25em]">
-            <motion.span
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap uppercase"
-              style={{ color: 'var(--threat)', opacity: unverifiedOpacity }}
-            >
-              unverified
-            </motion.span>
-            <motion.span
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap uppercase"
-              style={{ color: 'var(--accent)', opacity: verifiedOpacity }}
-            >
+    <div
+      ref={containerRef}
+      className={reduce ? 'relative h-[60vh] overflow-hidden' : 'relative h-[160vh]'}
+      aria-hidden="true"
+    >
+      <div
+        className={
+          reduce
+            ? 'absolute inset-0'
+            : 'sticky top-0 flex h-screen items-center overflow-hidden'
+        }
+      >
+        <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 h-full w-full" />
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          {reduce ? (
+            <span className="mono-eyebrow" style={{ color: 'var(--accent)' }}>
               verified order
-            </motion.span>
-          </div>
-        )}
+            </span>
+          ) : (
+            <div className="relative font-mono text-sm tracking-[0.25em]">
+              <motion.span
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap uppercase"
+                style={{ color: 'var(--threat)', opacity: unverifiedOpacity }}
+              >
+                unverified
+              </motion.span>
+              <motion.span
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap uppercase"
+                style={{ color: 'var(--accent)', opacity: verifiedOpacity }}
+              >
+                verified order
+              </motion.span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

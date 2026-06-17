@@ -9,6 +9,47 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { SpecimenCard } from './SpecimenCard'
+import { useReveal } from '../lib/useReveal'
+
+/* Five strokes folding into the single Q trust-fabric mark. */
+function ConvergeMark() {
+  const reduce = useReducedMotion()
+  const { ref, shown } = useReveal<SVGSVGElement>()
+  const lit = shown || reduce
+  const sources = [16, 32, 48, 64, 80]
+  return (
+    <svg ref={ref} viewBox="0 0 150 96" className="mb-4 h-16 w-24" aria-hidden="true">
+      {sources.map((y, i) => (
+        <motion.path
+          key={y}
+          d={`M10 ${y} C 50 ${y}, 70 48, 96 48`}
+          fill="none"
+          stroke="var(--accent-2)"
+          strokeWidth="1"
+          strokeOpacity="0.5"
+          initial={reduce ? false : { pathLength: 0 }}
+          animate={lit ? { pathLength: 1 } : { pathLength: 0 }}
+          transition={{ duration: 0.6, delay: i * 0.08, ease: 'easeOut' }}
+        />
+      ))}
+      {/* the Q mark they fold into */}
+      <motion.g
+        fill="none"
+        stroke="var(--accent)"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={reduce ? false : { opacity: 0, scale: 0.6 }}
+        animate={lit ? { opacity: 1, scale: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.4, delay: 0.5 }}
+        style={{ transformOrigin: '116px 48px' }}
+      >
+        <circle cx="116" cy="48" r="16" />
+        <path d="M110 52 L120 62 L140 30" />
+      </motion.g>
+    </svg>
+  )
+}
 
 interface Pillar {
   name: string
@@ -187,6 +228,7 @@ export function PillarsNetwork() {
 
         {/* tagline tile fills the sixth cell */}
         <div className="flex flex-col justify-center rounded-[var(--radius)] border border-dashed border-hairline p-6">
+          <ConvergeMark />
           <p className="text-xl font-semibold leading-snug">
             One platform. Five pillars.{' '}
             <span className="text-gradient">Infinite trust.</span>

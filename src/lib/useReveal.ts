@@ -14,7 +14,7 @@ import { useEffect, useRef, useState } from 'react'
   setState is only called from the rAF callback (never directly in the effect
   body), satisfying the react-hooks rules.
 */
-export function useReveal<T extends HTMLElement = HTMLDivElement>() {
+export function useReveal<T extends Element = HTMLDivElement>() {
   const ref = useRef<T>(null)
   const [shown, setShown] = useState(false)
 
