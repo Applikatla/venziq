@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+/* self-hosted variable fonts (no Google hotlinking) */
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/inter";
+@import "@fontsource/jetbrains-mono";
+
+/*
+  VENZIQ "Specimen" palette.
+
+  Why not the category default (navy + a purple->blue gradient): every AI-infra deck
+  uses it, so it carries no ownership. We commit to a different idea:
+
+    - accent (proof / verified / live / primary CTA) = an instrument-readout LIME.
+      It is the one color a passing check should be. It dominates anything "proven".
+    - accent-2 (AI / agent / ambient glow) = a cool VIOLET. Supporting role only.
+    - threat (problem section ONLY) = a hot CORAL, so risk reads as a different
+      temperature from trust and never appears anywhere else on the site.
+
+  Light mode keeps the hue identity but swaps the page to a warm BONE (not pure white,
+  which is the distinctive move) and darkens the accents so every text color clears AA
+  against its background. Dark is the default; light is opt-in via [data-theme="light"].
+*/
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0a0d12;
+  --panel: #10141c;
+  --raised: #171d28;
+  --hairline: rgba(232, 236, 248, 0.09);
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-strong: rgba(255, 255, 255, 0.07);
+  --glass-edge: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 12px 38px -16px rgba(0, 0, 0, 0.6);
+
+  --ink: #ecede8;
+  --muted: #9aa0ac;
+  --faint: #8c94a2;
+
+  --accent: #b6f25f;
+  --accent-soft: rgba(182, 242, 95, 0.14);
+  --accent-ink: #0a0d12;
+  --accent-2: #a78bfa;
+  --accent-2-soft: rgba(167, 139, 250, 0.16);
+  --threat: #ff5e3a;
+  --threat-soft: rgba(255, 94, 58, 0.14);
+
+  --grad-brand: linear-gradient(135deg, #b6f25f 0%, #a78bfa 100%);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f4f2ea;
+  --panel: #fcfbf6;
+  --raised: #ffffff;
+  --hairline: rgba(10, 13, 18, 0.1);
+  --glass: rgba(255, 255, 255, 0.6);
+  --glass-strong: rgba(255, 255, 255, 0.78);
+  --glass-edge: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 12px 32px -18px rgba(10, 13, 18, 0.22);
+
+  --ink: #0e1116;
+  --muted: #565b62;
+  --faint: #62656d;
+
+  --accent: #2f6b0e;
+  --accent-soft: rgba(47, 107, 14, 0.12);
+  --accent-ink: #ffffff;
+  --accent-2: #5b3fb8;
+  --accent-2-soft: rgba(91, 63, 184, 0.12);
+  --threat: #c0381a;
+  --threat-soft: rgba(192, 56, 26, 0.1);
+
+  --grad-brand: linear-gradient(135deg, #2f6b0e 0%, #5b3fb8 100%);
+}
+
+/*
+  @theme inline maps Tailwind color tokens onto the semantic vars above.
+  "inline" inlines the var() reference into generated utilities, so e.g. `bg-bg`
+  compiles to `background-color: var(--bg)` and follows the active [data-theme].
+*/
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-raised: var(--raised);
+  --color-hairline: var(--hairline);
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
+
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-2: var(--accent-2);
+  --color-accent-2-soft: var(--accent-2-soft);
+  --color-threat: var(--threat);
+  --color-threat-soft: var(--threat-soft);
+
+  --font-display: "Space Grotesk Variable", system-ui, sans-serif;
+  --font-body: "Inter Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius: 12px;
+}
+
+@layer base {
+  * {
+    border-color: var(--hairline);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* lenis controls scroll on capable devices; this is the fallback */
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* clip (not hidden) so the body does not become a scroll container,
+       which would break viewport scrolling and Lenis */
+    overflow-x: clip;
+    transition: background-color 0.45s ease, color 0.45s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* thin themed scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--hairline);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--faint);
+  }
+}
+
+@layer utilities {
+  /* glassmorphism panel — explicitly wanted for this brand */
+  .glass {
+    background: var(--glass);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    box-shadow: inset 0 1px 0 0 var(--glass-edge), var(--glass-shadow);
+  }
+  .glass-strong {
+    background: var(--glass-strong);
+    backdrop-filter: blur(22px) saturate(170%);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    box-shadow: inset 0 1px 0 0 var(--glass-edge), var(--glass-shadow);
+  }
+
+  .mono-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .text-gradient {
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* soft radial accent glow — sparingly, behind hero mark and closing CTA */
+  .accent-glow {
+    background: radial-gradient(
+      circle at center,
+      var(--accent-soft) 0%,
+      transparent 68%
+    );
+  }
+  .accent-2-glow {
+    background: radial-gradient(
+      circle at center,
+      var(--accent-2-soft) 0%,
+      transparent 68%
+    );
+  }
+
+  /* section vertical rhythm — generous per spec */
+  .section-pad {
+    padding-block: 6rem;
+  }
+  @media (min-width: 768px) {
+    .section-pad {
+      padding-block: 8rem;
+    }
+  }
+
+  .shell {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+}
+
+/* cursor-scanner sweep injected on [data-scan] hover */
+[data-scan] {
+  position: relative;
+}
+.vzq-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  pointer-events: none;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  box-shadow: 0 0 10px var(--accent-soft);
+  animation: vzqscan 0.62s ease-out forwards;
+}
+@keyframes vzqscan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes vzqpulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+}
+
+/* global reduced-motion guard. Individual components also branch on
+   useReducedMotion(); this is the belt-and-suspenders CSS layer. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 96" width="116" height="96" role="img" aria-label="VENZIQ mark">
+  <title>VENZIQ mark</title>
+  <desc>A Q whose tail rises from inside the bowl into a verification tick.</desc>
+  <g fill="none" stroke="#b6f25f" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="46" cy="46" r="34"/>
+    <path d="M33 54 L54 76 L104 18"/>
+  </g>
+</svg>

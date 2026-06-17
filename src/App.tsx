@@ -1,42 +1,58 @@
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import Hero from './components/sections/Hero';
-import Category from './components/sections/Category';
-import Problem from './components/sections/Problem';
-import Platform from './components/sections/Platform';
-import Architecture from './components/sections/Architecture';
-import Trends from './components/sections/Trends';
-import UseCases from './components/sections/UseCases';
-import Matrix from './components/sections/Matrix';
-import TrustNetwork from './components/sections/TrustNetwork';
-import Vision from './components/sections/Vision';
-import SocialProof from './components/sections/SocialProof';
-import CTA from './components/sections/CTA';
+import { lazy, Suspense, useEffect } from 'react'
+import { useReducedMotion } from 'motion/react'
+import { Nav } from './components/layout/Nav'
+import { SiteFooter } from './components/layout/SiteFooter'
+import { CursorRing } from './components/CursorRing'
+import { ProofSpine } from './components/ProofSpine'
+import { TrustHUD } from './components/hud/TrustHUD'
+import { CommandPalette } from './components/CommandPalette'
+import { BootSequence } from './components/BootSequence'
+import { initLenis } from './lib/scroll'
+import { Hero } from './sections/Hero'
+import { ProofBand } from './sections/ProofBand'
+import { Problem } from './sections/Problem'
+import { Platform } from './sections/Platform'
 
-function App() {
+const ChaosToOrder = lazy(() =>
+  import('./components/canvas/ChaosToOrder').then((m) => ({ default: m.ChaosToOrder })),
+)
+import { CorePattern } from './sections/CorePattern'
+import { Playground } from './sections/Playground'
+import { Architecture } from './sections/Architecture'
+import { WhyVenziq } from './sections/WhyVenziq'
+import { Vision } from './sections/Vision'
+
+export default function App() {
+  const reduce = useReducedMotion()
+
+  useEffect(() => {
+    if (reduce) return
+    return initLenis()
+  }, [reduce])
+
   return (
-    <div className="min-h-screen bg-background text-text selection:bg-primary/30 selection:text-white relative overflow-hidden">
-      {/* Global Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
-      
-      <Navbar />
-      <main className="relative z-10 flex flex-col items-center w-full">
+    <>
+      <BootSequence />
+      <CursorRing />
+      <ProofSpine />
+      <TrustHUD />
+      <CommandPalette />
+      <Nav />
+      <main>
         <Hero />
-        <Category />
+        <ProofBand />
         <Problem />
+        <Suspense fallback={<div className="h-[70vh]" />}>
+          <ChaosToOrder />
+        </Suspense>
         <Platform />
+        <CorePattern />
+        <Playground />
         <Architecture />
-        <Trends />
-        <UseCases />
-        <Matrix />
-        <TrustNetwork />
+        <WhyVenziq />
         <Vision />
-        <SocialProof />
-        <CTA />
       </main>
-      <Footer />
-    </div>
-  );
+      <SiteFooter />
+    </>
+  )
 }
-
-export default App;

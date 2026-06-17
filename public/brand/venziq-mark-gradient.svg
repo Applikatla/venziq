@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 96" width="116" height="96" role="img" aria-label="VENZIQ mark">
+  <title>VENZIQ mark (gradient)</title>
+  <desc>A Q whose tail rises from inside the bowl into a verification tick, in the brand gradient.</desc>
+  <defs>
+    <linearGradient id="vzq" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#b6f25f"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#vzq)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="46" cy="46" r="34"/>
+    <path d="M33 54 L54 76 L104 18"/>
+  </g>
+</svg>
