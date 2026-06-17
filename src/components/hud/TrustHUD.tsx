@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { Check } from 'lucide-react'
 import { useTrust } from '../../lib/trust-context'
+import { LogoMark } from '../Logo'
 
 /*
   The living-instrument readout: a glass panel that proves the page as you scroll.
@@ -43,9 +43,9 @@ export function TrustHUD() {
               transition={reduce ? { duration: 0 } : { duration: 0.5, ease: 'easeOut' }}
             />
           </svg>
-          <span className="absolute">
+          <span className="absolute grid place-items-center">
             {complete ? (
-              <Check size={16} strokeWidth={3} style={{ color: 'var(--accent)' }} />
+              <LogoMark decorative animate size={18} tone="accent" />
             ) : (
               <span className="font-mono text-[0.6rem] text-ink">
                 {done}/{total}
