@@ -1,65 +1,39 @@
-import { useState } from 'react'
-import { Logo, LogoMark } from './components/Logo'
+import { useEffect } from 'react'
+import { useReducedMotion } from 'motion/react'
+import { Nav } from './components/layout/Nav'
+import { SiteFooter } from './components/layout/SiteFooter'
+import { initLenis } from './lib/scroll'
+import { Hero } from './sections/Hero'
+import { ProofBand } from './sections/ProofBand'
+import { Problem } from './sections/Problem'
+import { Platform } from './sections/Platform'
+import { CorePattern } from './sections/CorePattern'
+import { Architecture } from './sections/Architecture'
+import { WhyVenziq } from './sections/WhyVenziq'
+import { Vision } from './sections/Vision'
 
 export default function App() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+  const reduce = useReducedMotion()
+
+  useEffect(() => {
+    if (reduce) return
+    return initLenis()
+  }, [reduce])
 
   return (
-    <div
-      data-theme={theme}
-      style={{
-        minHeight: '100vh',
-        background: 'var(--bg)',
-        color: 'var(--ink)',
-        padding: '3rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '3rem',
-      }}
-    >
-      <button
-        onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
-        style={{
-          alignSelf: 'flex-start',
-          fontFamily: 'var(--font-mono)',
-          padding: '0.5rem 1rem',
-          border: '1px solid var(--hairline)',
-          borderRadius: 8,
-          color: 'var(--ink)',
-          background: 'var(--glass)',
-        }}
-      >
-        toggle theme ({theme})
-      </button>
-
-      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <p className="mono-eyebrow">Lockup — static</p>
-        <Logo height={48} />
-        <p className="mono-eyebrow">Lockup — animated (reload to replay)</p>
-        <Logo height={48} animate />
-      </section>
-
-      <section style={{ display: 'flex', alignItems: 'flex-end', gap: '2rem' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <p className="mono-eyebrow">Mark · accent</p>
-          <LogoMark size={96} tone="accent" />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <p className="mono-eyebrow">Mark · gradient · idle</p>
-          <LogoMark size={96} tone="gradient" idle />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <p className="mono-eyebrow">Mark · animated</p>
-          <LogoMark size={96} tone="accent" animate />
-        </div>
-      </section>
-
-      <section style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-        <p className="mono-eyebrow">Favicon</p>
-        <img src="/favicon.svg" width={16} height={16} alt="16px" />
-        <img src="/favicon.svg" width={32} height={32} alt="32px" />
-        <img src="/favicon.svg" width={64} height={64} alt="64px" />
-      </section>
-    </div>
+    <>
+      <Nav />
+      <main>
+        <Hero />
+        <ProofBand />
+        <Problem />
+        <Platform />
+        <CorePattern />
+        <Architecture />
+        <WhyVenziq />
+        <Vision />
+      </main>
+      <SiteFooter />
+    </>
   )
 }

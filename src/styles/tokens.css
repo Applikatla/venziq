@@ -121,7 +121,9 @@
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /* clip (not hidden) so the body does not become a scroll container,
+       which would break viewport scrolling and Lenis */
+    overflow-x: clip;
     transition: background-color 0.45s ease, color 0.45s ease;
   }
 
