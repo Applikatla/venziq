@@ -1,9 +1,10 @@
 import type { ReactNode } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import { useReveal } from '../lib/useReveal'
 
 /*
-  Fade + lift on first scroll into view. Reduced motion renders children in place
-  with no transform.
+  Fade + lift on first scroll into view, driven by the robust useReveal hook so
+  content can never get stuck hidden. Reduced motion renders in place.
 */
 export function ScrollReveal({
   children,
@@ -17,18 +18,25 @@ export function ScrollReveal({
   className?: string
 }) {
   const reduce = useReducedMotion()
-
-  if (reduce) return <div className={className}>{children}</div>
+  const { ref, shown } = useReveal<HTMLDivElement>()
+  const visible = shown || reduce
 
   return (
-    <motion.div
+    <div
+      ref={ref}
       className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-10% 0px' }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      style={
+        reduce
+          ? undefined
+          : {
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'none' : `translateY(${y}px)`,
+              transition: `opacity 0.6s ${delay}s cubic-bezier(0.22,1,0.36,1), transform 0.6s ${delay}s cubic-bezier(0.22,1,0.36,1)`,
+              willChange: 'opacity, transform',
+            }
+      }
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
