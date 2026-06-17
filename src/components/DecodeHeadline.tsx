@@ -54,7 +54,7 @@ export function DecodeHeadline({
   }, [active, reduce, text])
 
   return (
-    <Tag className={className} aria-label={text}>
+    <Tag className={className} aria-label={text} data-scan="">
       <span ref={ref} aria-hidden="true">
         {display}
       </span>

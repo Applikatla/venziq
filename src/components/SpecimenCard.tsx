@@ -77,6 +77,7 @@ export function SpecimenCard({
   return (
     <motion.div
       ref={ref}
+      data-scan=""
       onPointerMove={enableTilt ? onMove : undefined}
       onPointerLeave={enableTilt ? onLeave : undefined}
       style={

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Command } from 'lucide-react'
 import { Logo } from '../Logo'
 import { ThemeToggle } from '../ThemeToggle'
+import { openCommandPalette } from '../../lib/command'
 import { NAV_LINKS, CONTACT_ID } from '../../lib/nav'
 import { scrollToId, scrollToTop } from '../../lib/scroll'
 
@@ -84,6 +85,13 @@ export function Nav() {
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => openCommandPalette()}
+            aria-label="Open command palette"
+            className="hidden h-8 items-center gap-1.5 rounded-full border border-hairline px-3 font-mono text-[0.7rem] text-muted transition-colors hover:text-ink lg:inline-flex"
+          >
+            <Command size={12} aria-hidden="true" />K
+          </button>
           <ThemeToggle className="hidden sm:inline-flex" />
           <button
             onClick={() => go(CONTACT_ID)}

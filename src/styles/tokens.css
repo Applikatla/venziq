@@ -240,6 +240,41 @@
   }
 }
 
+/* cursor-scanner sweep injected on [data-scan] hover */
+[data-scan] {
+  position: relative;
+}
+.vzq-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  pointer-events: none;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  box-shadow: 0 0 10px var(--accent-soft);
+  animation: vzqscan 0.62s ease-out forwards;
+}
+@keyframes vzqscan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
 @keyframes vzqpulse {
   0%,
   100% {

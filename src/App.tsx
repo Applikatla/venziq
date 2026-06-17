@@ -5,6 +5,7 @@ import { SiteFooter } from './components/layout/SiteFooter'
 import { CursorRing } from './components/CursorRing'
 import { ProofSpine } from './components/ProofSpine'
 import { TrustHUD } from './components/hud/TrustHUD'
+import { CommandPalette } from './components/CommandPalette'
 import { initLenis } from './lib/scroll'
 import { Hero } from './sections/Hero'
 import { ProofBand } from './sections/ProofBand'
@@ -33,6 +34,7 @@ export default function App() {
       <CursorRing />
       <ProofSpine />
       <TrustHUD />
+      <CommandPalette />
       <Nav />
       <main>
         <Hero />
