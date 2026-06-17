@@ -2,6 +2,7 @@ import { AlertTriangle, ArrowRight } from 'lucide-react'
 import { Section, Eyebrow } from '../components/Section'
 import { DecodeHeadline } from '../components/DecodeHeadline'
 import { ScrollReveal } from '../components/ScrollReveal'
+import { GlitchText } from '../components/GlitchText'
 
 const FAILURES = [
   'AI actions are untraceable and unverifiable, creating accountability gaps',
@@ -37,14 +38,18 @@ export function Problem() {
       <div className="mt-14 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
         {FAILURES.map((f, i) => (
           <ScrollReveal key={f} delay={i * 0.05}>
-            <div className="flex gap-3">
+            <div className="group flex gap-3">
               <AlertTriangle
                 size={18}
-                className="mt-0.5 shrink-0"
+                className="mt-0.5 shrink-0 transition-transform group-hover:-translate-y-px"
                 style={{ color: 'var(--threat)' }}
                 aria-hidden="true"
               />
-              <p className="text-[0.98rem] leading-relaxed text-ink">{f}</p>
+              <GlitchText
+                as="p"
+                text={f}
+                className="text-[0.98rem] leading-relaxed text-ink"
+              />
             </div>
           </ScrollReveal>
         ))}
@@ -63,12 +68,9 @@ export function Problem() {
               >
                 <span className="font-mono text-sm text-ink">{row.tool}</span>
                 <span className="text-sm text-muted">{row.does}</span>
-                <span
-                  className="flex items-center gap-2 text-sm"
-                  style={{ color: 'var(--threat)' }}
-                >
+                <span className="flex items-center gap-2 text-sm" style={{ color: 'var(--threat)' }}>
                   <ArrowRight size={14} aria-hidden="true" />
-                  {row.miss}
+                  <GlitchText text={row.miss} />
                 </span>
               </div>
             ))}
