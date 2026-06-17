@@ -150,9 +150,8 @@ export function PillarsNetwork() {
               <SpecimenCard
                 serial={`VZQ-${String(i + 1).padStart(2, '0')}`}
                 interactive
-                className={`h-full transition-transform duration-300 ${
-                  isActive && !reduce ? '-translate-y-1' : ''
-                }`}
+                tilt
+                className="h-full"
               >
                 <Icon
                   size={22}

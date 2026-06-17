@@ -136,7 +136,7 @@ export function CorePattern() {
           const Icon = uc.icon
           return (
             <ScrollReveal key={uc.industry} delay={i * 0.08}>
-              <SpecimenCard serial={`UC-${String(i + 1).padStart(2, '0')}`} className="h-full">
+              <SpecimenCard serial={`UC-${String(i + 1).padStart(2, '0')}`} className="h-full" tilt>
                 <div className="flex items-center gap-2.5">
                   <Icon size={20} style={{ color: 'var(--accent)' }} aria-hidden="true" />
                   <h3 className="text-lg font-semibold tracking-tight">{uc.industry}</h3>

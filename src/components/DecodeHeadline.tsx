@@ -14,22 +14,30 @@ export function DecodeHeadline({
   text,
   as: Tag = 'h2',
   className,
+  trigger = 'view',
 }: {
   text: string
   as?: ElementType
   className?: string
+  /** 'view' decodes on scroll-in; 'mount' decodes immediately on load */
+  trigger?: 'view' | 'mount'
 }) {
   const reduce = useReducedMotion()
   const { ref, shown } = useReveal<HTMLSpanElement>()
   const [display, setDisplay] = useState(text)
+  const active = trigger === 'mount' || shown
 
   useEffect(() => {
-    if (reduce || !shown) return
-    let frame = 0
-    const total = text.length
-    const id = setInterval(() => {
-      frame += 1
-      const revealed = Math.floor(frame / 1.6)
+    if (reduce || !active) return
+    // time-based (not frame-count) so throttled frames still reflect true
+    // progress and the decode always completes by wall clock
+    const DURATION = 22 * text.length + 350
+    let raf = 0
+    let start = 0
+    const tick = (t: number) => {
+      if (!start) start = t
+      const p = Math.min(1, (t - start) / DURATION)
+      const revealed = Math.floor(p * text.length)
       let out = ''
       for (let i = 0; i < text.length; i++) {
         const ch = text[i]
@@ -38,10 +46,12 @@ export function DecodeHeadline({
         else out += SCRAMBLE[(Math.random() * SCRAMBLE.length) | 0]
       }
       setDisplay(out)
-      if (revealed >= total) clearInterval(id)
-    }, 28)
-    return () => clearInterval(id)
-  }, [shown, reduce, text])
+      if (p < 1) raf = requestAnimationFrame(tick)
+      else setDisplay(text)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [active, reduce, text])
 
   return (
     <Tag className={className} aria-label={text}>

@@ -1,5 +1,13 @@
-import { motion, useReducedMotion } from 'motion/react'
+import { useRef, type PointerEvent } from 'react'
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from 'motion/react'
 import { LogoMark } from '../components/Logo'
+import { DecodeHeadline } from '../components/DecodeHeadline'
 import { AsciiField } from '../components/canvas/AsciiField'
 import { MagneticButton } from '../components/MagneticButton'
 import { TrustPrinciples } from '../components/TrustPrinciples'
@@ -8,6 +16,22 @@ import { CONTACT_ID } from '../lib/nav'
 
 export function Hero() {
   const reduce = useReducedMotion()
+  const sectionRef = useRef<HTMLElement>(null)
+
+  // cursor-following glow
+  const gx = useMotionValue(0.7)
+  const gy = useMotionValue(0.34)
+  const sgx = useSpring(gx, { stiffness: 60, damping: 20 })
+  const sgy = useSpring(gy, { stiffness: 60, damping: 20 })
+  const glowLeft = useTransform(sgx, (v) => `${v * 100}%`)
+  const glowTop = useTransform(sgy, (v) => `${v * 100}%`)
+
+  const onMove = (e: PointerEvent<HTMLElement>) => {
+    if (reduce || !sectionRef.current) return
+    const r = sectionRef.current.getBoundingClientRect()
+    gx.set((e.clientX - r.left) / r.width)
+    gy.set((e.clientY - r.top) / r.height)
+  }
 
   const rise = (delay: number) =>
     reduce
@@ -21,6 +45,8 @@ export function Hero() {
   return (
     <section
       id="top"
+      ref={sectionRef}
+      onPointerMove={onMove}
       className="relative flex min-h-[94vh] items-center overflow-hidden pt-28"
     >
       <div className="pointer-events-none absolute inset-0">
@@ -33,9 +59,16 @@ export function Hero() {
           }}
         />
       </div>
-      <div
+      {/* cursor-tracking accent glow */}
+      <motion.div
         aria-hidden="true"
-        className="accent-glow pointer-events-none absolute right-[6%] top-1/3 h-[40rem] w-[40rem] -translate-y-1/2 rounded-full blur-2xl"
+        className="accent-glow pointer-events-none absolute h-[40rem] w-[40rem] rounded-full blur-2xl"
+        style={{
+          left: glowLeft,
+          top: glowTop,
+          x: '-50%',
+          y: '-50%',
+        }}
       />
 
       <div className="shell relative w-full">
@@ -43,12 +76,14 @@ export function Hero() {
           AI-Native Trust Infrastructure
         </motion.p>
 
-        <motion.h1
-          className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl"
-          {...rise(0.08)}
-        >
-          Trust Infrastructure for the AI Economy
-        </motion.h1>
+        <motion.div {...rise(0.08)}>
+          <DecodeHeadline
+            as="h1"
+            trigger="mount"
+            text="Trust Infrastructure for the AI Economy"
+            className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl"
+          />
+        </motion.div>
 
         <motion.p
           className="mt-7 max-w-2xl text-lg text-muted md:text-xl"
