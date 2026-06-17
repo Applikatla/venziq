@@ -3,6 +3,7 @@ import { ScrollReveal } from '../components/ScrollReveal'
 import { MagneticButton } from '../components/MagneticButton'
 import { scrollToId } from '../lib/scroll'
 import { CONTACT_ID } from '../lib/nav'
+import { useTrust } from '../lib/trust-context'
 
 const NodeLattice = lazy(() =>
   import('../components/canvas/NodeLattice').then((m) => ({ default: m.NodeLattice })),
@@ -13,6 +14,7 @@ const NodeLattice = lazy(() =>
   with the ambient node lattice behind and the signature triad line.
 */
 export function Vision() {
+  const { sessionId, verified, total } = useTrust()
   return (
     <section
       id="vision"
@@ -66,6 +68,20 @@ export function Vision() {
             <MagneticButton onClick={() => scrollToId(CONTACT_ID)} strength={0.4}>
               Request access
             </MagneticButton>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.25}>
+          <div className="mt-14 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-hairline px-4 py-2 font-mono text-[0.72rem] text-faint">
+            <span style={{ color: 'var(--accent)' }}>session {sessionId}</span>
+            <span aria-hidden="true">·</span>
+            <span>
+              {verified.length}/{total} sections verified
+            </span>
+            <span aria-hidden="true">·</span>
+            <span style={{ color: verified.length >= total ? 'var(--accent)' : 'var(--muted)' }}>
+              {verified.length >= total ? 'sealed ✓' : 'sealing…'}
+            </span>
           </div>
         </ScrollReveal>
       </div>

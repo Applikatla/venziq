@@ -1,5 +1,19 @@
-import { useRef, useState, type ElementType } from 'react'
+import {
+  useRef,
+  useState,
+  type ComponentType,
+  type CSSProperties,
+  type ElementType,
+  type ReactNode,
+} from 'react'
 import { useReducedMotion } from 'motion/react'
+
+type TagProps = {
+  className?: string
+  onMouseEnter?: () => void
+  style?: CSSProperties
+  children?: ReactNode
+}
 
 const GLYPHS = '!<>{}[]/\\=+*#%01xz'
 
@@ -49,13 +63,14 @@ export function GlitchText({
     raf.current = requestAnimationFrame(tick)
   }
 
+  const Comp = Tag as ComponentType<TagProps>
   return (
-    <Tag
+    <Comp
       className={className}
       onMouseEnter={run}
       style={glitching ? { color: 'var(--threat)' } : undefined}
     >
       {display}
-    </Tag>
+    </Comp>
   )
 }

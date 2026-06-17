@@ -1,4 +1,17 @@
-import { useEffect, useState, type ElementType } from 'react'
+import {
+  useEffect,
+  useState,
+  type ComponentType,
+  type ElementType,
+  type ReactNode,
+} from 'react'
+
+type TagProps = {
+  className?: string
+  'aria-label'?: string
+  'data-scan'?: string
+  children?: ReactNode
+}
 import { useReducedMotion } from 'motion/react'
 import { useReveal } from '../lib/useReveal'
 
@@ -53,11 +66,12 @@ export function DecodeHeadline({
     return () => cancelAnimationFrame(raf)
   }, [active, reduce, text])
 
+  const Comp = Tag as ComponentType<TagProps>
   return (
-    <Tag className={className} aria-label={text} data-scan="">
+    <Comp className={className} aria-label={text} data-scan="">
       <span ref={ref} aria-hidden="true">
         {display}
       </span>
-    </Tag>
+    </Comp>
   )
 }

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef, type PointerEvent } from 'react'
+import { useRef, type PointerEvent } from 'react'
 import {
   motion,
   useMotionValue,
@@ -8,11 +8,8 @@ import {
 } from 'motion/react'
 import { LogoMark } from '../components/Logo'
 import { DecodeHeadline } from '../components/DecodeHeadline'
+import { HeroBackdrop } from '../components/canvas/HeroBackdrop'
 import { MagneticButton } from '../components/MagneticButton'
-
-const AsciiField = lazy(() =>
-  import('../components/canvas/AsciiField').then((m) => ({ default: m.AsciiField })),
-)
 import { TrustPrinciples } from '../components/TrustPrinciples'
 import { scrollToId } from '../lib/scroll'
 import { CONTACT_ID } from '../lib/nav'
@@ -53,9 +50,7 @@ export function Hero() {
       className="relative flex min-h-[94vh] items-center overflow-hidden pt-28"
     >
       <div className="pointer-events-none absolute inset-0">
-        <Suspense fallback={null}>
-          <AsciiField className="absolute inset-0" />
-        </Suspense>
+        <HeroBackdrop className="absolute inset-0" />
         <div
           className="absolute inset-0"
           style={{
