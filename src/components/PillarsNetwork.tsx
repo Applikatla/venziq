@@ -142,30 +142,58 @@ export function PillarsNetwork() {
 
   return (
     <div ref={containerRef} className="relative">
-      {/* connection overlay — above the cards so the network reads */}
+      {/* connection overlay — above the cards so the network reads.
+          Lines are rendered as glassy neon: a soft blurred halo under a thin,
+          translucent bright core. */}
       <svg
         className="pointer-events-none absolute inset-0 z-20 h-full w-full"
         aria-hidden="true"
       >
+        <defs>
+          <filter id="vzq-neon" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="3.4" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
         {lines.map((l, i) => (
           <g key={`${active}-${i}`}>
+            {/* glassy neon halo */}
             <motion.line
               x1={l.x1}
               y1={l.y1}
               x2={l.x2}
               y2={l.y2}
               stroke="var(--accent)"
-              strokeWidth={1}
-              strokeOpacity={0.5}
+              strokeWidth={3.5}
+              strokeOpacity={0.16}
+              strokeLinecap="round"
+              filter="url(#vzq-neon)"
               initial={reduce ? undefined : { pathLength: 0, opacity: 0 }}
               animate={reduce ? undefined : { pathLength: 1, opacity: 1 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
             />
-            <circle cx={l.x2} cy={l.y2} r={3} fill="var(--accent)" />
+            {/* thin translucent core */}
+            <motion.line
+              x1={l.x1}
+              y1={l.y1}
+              x2={l.x2}
+              y2={l.y2}
+              stroke="var(--accent)"
+              strokeWidth={1.25}
+              strokeOpacity={0.55}
+              strokeLinecap="round"
+              initial={reduce ? undefined : { pathLength: 0, opacity: 0 }}
+              animate={reduce ? undefined : { pathLength: 1, opacity: 1 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+            />
+            <circle cx={l.x2} cy={l.y2} r={3} fill="var(--accent)" fillOpacity={0.85} filter="url(#vzq-neon)" />
           </g>
         ))}
         {lines.length > 0 && (
-          <circle cx={lines[0].x1} cy={lines[0].y1} r={4} fill="var(--accent)" />
+          <circle cx={lines[0].x1} cy={lines[0].y1} r={4} fill="var(--accent)" filter="url(#vzq-neon)" />
         )}
       </svg>
 
