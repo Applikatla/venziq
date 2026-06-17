@@ -7,6 +7,7 @@ import { ShieldToggle } from '../Shield'
 import { openCommandPalette } from '../../lib/command'
 import { NAV_LINKS, openContact } from '../../lib/nav'
 import { scrollToId, scrollToTop } from '../../lib/scroll'
+import { useActiveSection } from '../../lib/useActiveSection'
 import { useTrust } from '../../lib/trust-context'
 
 function SessionDot() {
@@ -33,6 +34,7 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const reduce = useReducedMotion()
+  const active = useActiveSection()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -88,15 +90,28 @@ export function Nav() {
         </a>
 
         <div className="hidden items-center gap-7 lg:flex">
-          {NAV_LINKS.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => go(l.id)}
-              className="text-[0.9rem] text-muted transition-colors hover:text-ink"
-            >
-              {l.label}
-            </button>
-          ))}
+          {NAV_LINKS.map((l) => {
+            const isActive = active === l.id
+            return (
+              <button
+                key={l.id}
+                onClick={() => go(l.id)}
+                aria-current={isActive ? 'true' : undefined}
+                className="relative text-[0.9rem] transition-colors hover:text-ink"
+                style={{ color: isActive ? 'var(--ink)' : 'var(--muted)' }}
+              >
+                {l.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute -bottom-1.5 left-0 right-0 mx-auto h-1 w-1 rounded-full"
+                    style={{ background: 'var(--accent)' }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </button>
+            )
+          })}
           <span
             aria-disabled="true"
             title="Investors — coming soon"

@@ -165,12 +165,10 @@ export function Logo({ height = 30, className }: LogoProps) {
       height={height}
       viewBox="0 0 300 100"
       className={className}
-      role="img"
-      aria-label="VENZIQ"
+      aria-hidden="true"
       onPointerEnter={() => animated && setReplay((r) => r + 1)}
       style={{ overflow: 'visible' }}
     >
-      <title>VENZIQ</title>
       <text
         x="2" y="78"
         fontFamily="var(--font-display)" fontWeight={700} fontSize={78}

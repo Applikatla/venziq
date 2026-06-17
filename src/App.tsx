@@ -9,6 +9,8 @@ import { TrustHUD } from './components/hud/TrustHUD'
 import { CommandPalette } from './components/CommandPalette'
 import { BootSequence } from './components/BootSequence'
 import { ShieldOverlay } from './components/Shield'
+import { VerifySweep } from './components/VerifySweep'
+import { HelpOverlay } from './components/HelpOverlay'
 import { initLenis } from './lib/scroll'
 import { Hero } from './sections/Hero'
 import { ProofBand } from './sections/ProofBand'
@@ -20,6 +22,7 @@ const ChaosToOrder = lazy(() =>
 )
 import { CorePattern } from './sections/CorePattern'
 import { Playground } from './sections/Playground'
+import { ZkProof } from './sections/ZkProof'
 import { Architecture } from './sections/Architecture'
 import { WhyVenziq } from './sections/WhyVenziq'
 import { Vision } from './sections/Vision'
@@ -38,6 +41,8 @@ export default function App() {
       <CursorRing />
       <AutonomousAgent />
       <ShieldOverlay />
+      <VerifySweep />
+      <HelpOverlay />
       <ProofSpine />
       <TrustHUD />
       <CommandPalette />
@@ -52,6 +57,7 @@ export default function App() {
         <Platform />
         <CorePattern />
         <Playground />
+        <ZkProof />
         <Architecture />
         <WhyVenziq />
         <Vision />
