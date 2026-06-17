@@ -10,9 +10,9 @@ import { useThemeColors } from '../../lib/themeColors'
   fallback. Frameloop pauses when off-screen.
 */
 
-const COUNT = 460
+const COUNT = 340
 const CONNECT = 1.7
-const MAX_SEGMENTS = 1100
+const MAX_SEGMENTS = 700
 
 // seeded PRNG so geometry is deterministic (pure during render, stable across renders)
 function mulberry32(a: number) {
@@ -27,6 +27,21 @@ function mulberry32(a: number) {
 
 function Lattice({ node, edge }: { node: string; edge: string }) {
   const group = useRef<THREE.Group>(null)
+  const vel = useRef(0)
+
+  useEffect(() => {
+    let lastY = window.scrollY
+    let lastT = performance.now()
+    const onScroll = () => {
+      const now = performance.now()
+      const dt = Math.max(16, now - lastT)
+      vel.current = Math.min(1.4, (Math.abs(window.scrollY - lastY) / dt) * 0.6)
+      lastY = window.scrollY
+      lastT = now
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const { positions, lines } = useMemo(() => {
     const rng = mulberry32(0x7e2c91)
@@ -62,9 +77,13 @@ function Lattice({ node, edge }: { node: string; edge: string }) {
   useFrame((state, delta) => {
     const g = group.current
     if (!g) return
-    g.rotation.y += delta * 0.03
+    vel.current *= 0.9 // decay back to rest
+    const v = vel.current
+    // scroll velocity spins it faster and stretches it slightly, then it settles
+    g.rotation.y += delta * (0.03 + v * 0.5)
     g.rotation.x = THREE.MathUtils.lerp(g.rotation.x, -state.pointer.y * 0.18, 0.04)
     g.rotation.z = THREE.MathUtils.lerp(g.rotation.z, state.pointer.x * 0.08, 0.04)
+    g.scale.setScalar(1 + v * 0.06)
   })
 
   return (
