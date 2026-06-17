@@ -19,12 +19,9 @@ export default function Navbar() {
       </div>
       
       <div className="hidden md:flex items-center space-x-4">
-        <button className="px-4 py-2 text-sm font-medium text-white hover:text-primary transition-colors">
-          Sign In
-        </button>
-        <button className="px-5 py-2.5 text-sm font-medium text-background bg-primary hover:bg-primary/90 rounded-md shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all">
-          Book Demo
-        </button>
+        <a href="mailto:reachus@venziq.com" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 text-sm font-medium text-background bg-primary hover:bg-primary/90 rounded-md shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all">
+          Let's Connect
+        </a>
       </div>
       
       <button className="md:hidden text-muted hover:text-white">

@@ -39,10 +39,10 @@ export default function Hero() {
           </div>
           
           <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
-            <button className="w-full sm:w-auto px-8 py-4 bg-primary hover:bg-primary/90 text-background font-semibold rounded-lg shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all flex items-center justify-center space-x-2">
-              <span>Book Enterprise Demo</span>
+            <a href="mailto:reachus@venziq.com" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 bg-primary hover:bg-primary/90 text-background font-semibold rounded-lg shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all flex items-center justify-center space-x-2">
+              <span>Let's Connect</span>
               <ArrowRight size={18} />
-            </button>
+            </a>
             <button className="w-full sm:w-auto px-8 py-4 bg-surface hover:bg-surface-hover text-white border border-border font-medium rounded-lg transition-all flex items-center justify-center space-x-2">
               <Zap size={18} className="text-accent" />
               <span>View Architecture</span>
