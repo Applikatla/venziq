@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
-import { Play, Check } from 'lucide-react'
+import { Play, Check, X } from 'lucide-react'
 import { Section, Eyebrow } from '../components/Section'
 import { DecodeHeadline } from '../components/DecodeHeadline'
 import { SpecimenCard } from '../components/SpecimenCard'
@@ -26,6 +26,7 @@ interface Run {
   action: string
   hash: string
   block: string
+  tampered: boolean
 }
 
 function reached(stage: Stage, target: Stage): boolean {
@@ -36,6 +37,7 @@ function reached(stage: Stage, target: Stage): boolean {
 export function Playground() {
   const reduce = useReducedMotion()
   const [action, setAction] = useState(PRESETS[0])
+  const [tamper, setTamper] = useState(false)
   const [stage, setStage] = useState<Stage>('idle')
   const [run, setRun] = useState<Run | null>(null)
   const [hashDisplay, setHashDisplay] = useState('')
@@ -59,6 +61,7 @@ export function Playground() {
       action: clean,
       hash: '0x' + randHex(24),
       block: String(18_400_000 + ((Math.random() * 900000) | 0)),
+      tampered: tamper,
     }
     setRun(next)
 
@@ -125,6 +128,25 @@ export function Playground() {
               {p}
             </button>
           ))}
+          {/* tamper toggle — try to forge the proof */}
+          <button
+            type="button"
+            onClick={() => setTamper((t) => !t)}
+            disabled={running}
+            aria-pressed={tamper}
+            className="ml-auto inline-flex items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-xs transition-colors disabled:opacity-50"
+            style={{
+              borderColor: tamper ? 'var(--threat)' : 'var(--hairline)',
+              color: tamper ? 'var(--threat)' : 'var(--faint)',
+              background: tamper ? 'var(--threat-soft)' : 'transparent',
+            }}
+          >
+            <span
+              className="inline-block h-1.5 w-1.5 rounded-full"
+              style={{ background: tamper ? 'var(--threat)' : 'var(--faint)' }}
+            />
+            tamper
+          </button>
         </div>
 
         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
@@ -181,14 +203,22 @@ export function Playground() {
                 value={reached(stage, 'zk') ? hashDisplay : ''}
                 pending={stage === 'zk'}
                 done={reached(stage, 'chain')}
-                status="verified ✓"
+                status={run?.tampered ? 'proof invalid ✗' : 'verified ✓'}
+                threat={run?.tampered}
               />
               <PipeRow
                 channel="chain.commit"
-                value={reached(stage, 'chain') ? `block #${run?.block ?? ''}` : ''}
+                value={
+                  reached(stage, 'chain')
+                    ? run?.tampered
+                      ? 'commit refused'
+                      : `block #${run?.block ?? ''}`
+                    : ''
+                }
                 pending={stage === 'chain'}
                 done={stage === 'done'}
-                status="sealed"
+                status={run?.tampered ? 'rejected' : 'sealed'}
+                threat={run?.tampered}
               />
             </div>
           )}
@@ -201,9 +231,19 @@ export function Playground() {
                 exit={{ opacity: 0 }}
                 className="mt-4 flex items-center gap-2 border-t border-hairline pt-4"
               >
-                <Check size={15} style={{ color: 'var(--accent)' }} aria-hidden="true" />
-                <span style={{ color: 'var(--accent)' }}>trusted autonomy</span>
-                <span className="text-faint">— action verified, proof sealed</span>
+                {run?.tampered ? (
+                  <>
+                    <X size={15} style={{ color: 'var(--threat)' }} aria-hidden="true" />
+                    <span style={{ color: 'var(--threat)' }}>trust violation blocked</span>
+                    <span className="text-faint">— tampered proof rejected by the chain</span>
+                  </>
+                ) : (
+                  <>
+                    <Check size={15} style={{ color: 'var(--accent)' }} aria-hidden="true" />
+                    <span style={{ color: 'var(--accent)' }}>trusted autonomy</span>
+                    <span className="text-faint">— action verified, proof sealed</span>
+                  </>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -220,6 +260,7 @@ function PipeRow({
   done = false,
   pending = false,
   statusAccent = true,
+  threat = false,
 }: {
   channel: string
   value: string
@@ -227,8 +268,16 @@ function PipeRow({
   done?: boolean
   pending?: boolean
   statusAccent?: boolean
+  threat?: boolean
 }) {
   const showStatus = done
+  const statusColor = !showStatus
+    ? 'var(--faint)'
+    : threat
+      ? 'var(--threat)'
+      : statusAccent
+        ? 'var(--accent)'
+        : 'var(--muted)'
   return (
     <div className="flex items-center gap-3 whitespace-nowrap">
       <span className="w-28 shrink-0" style={{ color: 'var(--accent-2)' }}>
@@ -237,12 +286,7 @@ function PipeRow({
       <span className="min-w-0 flex-1 truncate text-ink">
         {value || (pending ? 'working…' : '—')}
       </span>
-      <span
-        className="shrink-0 text-right"
-        style={{
-          color: showStatus ? (statusAccent ? 'var(--accent)' : 'var(--muted)') : 'var(--faint)',
-        }}
-      >
+      <span className="shrink-0 text-right" style={{ color: statusColor }}>
         {showStatus ? status : '···'}
       </span>
     </div>
