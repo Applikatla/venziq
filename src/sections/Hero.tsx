@@ -1,5 +1,8 @@
 import { LogoMark } from '../components/Logo'
 import { AsciiField } from '../components/canvas/AsciiField'
+import { MagneticButton } from '../components/MagneticButton'
+import { scrollToId } from '../lib/scroll'
+import { CONTACT_ID } from '../lib/nav'
 
 export function Hero() {
   return (
@@ -35,12 +38,9 @@ export function Hero() {
           <span className="text-ink">trusted intelligence.</span>
         </p>
         <div className="mt-10 flex items-center gap-5">
-          <button
-            className="rounded-full px-6 py-3 text-sm font-medium"
-            style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}
-          >
+          <MagneticButton onClick={() => scrollToId(CONTACT_ID)}>
             Request access
-          </button>
+          </MagneticButton>
           <LogoMark size={44} tone="gradient" idle />
         </div>
       </div>

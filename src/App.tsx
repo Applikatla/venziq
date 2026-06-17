@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useReducedMotion } from 'motion/react'
 import { Nav } from './components/layout/Nav'
 import { SiteFooter } from './components/layout/SiteFooter'
+import { CursorRing } from './components/CursorRing'
 import { initLenis } from './lib/scroll'
 import { Hero } from './sections/Hero'
 import { ProofBand } from './sections/ProofBand'
@@ -22,6 +23,7 @@ export default function App() {
 
   return (
     <>
+      <CursorRing />
       <Nav />
       <main>
         <Hero />
