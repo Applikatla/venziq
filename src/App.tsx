@@ -7,6 +7,7 @@ import { initLenis } from './lib/scroll'
 import { Hero } from './sections/Hero'
 import { ProofBand } from './sections/ProofBand'
 import { Problem } from './sections/Problem'
+import { ChaosToOrder } from './components/canvas/ChaosToOrder'
 import { Platform } from './sections/Platform'
 import { CorePattern } from './sections/CorePattern'
 import { Architecture } from './sections/Architecture'
@@ -29,6 +30,7 @@ export default function App() {
         <Hero />
         <ProofBand />
         <Problem />
+        <ChaosToOrder />
         <Platform />
         <CorePattern />
         <Architecture />
