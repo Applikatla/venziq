@@ -21,6 +21,7 @@ const ChaosToOrder = lazy(() =>
 )
 import { CorePattern } from './sections/CorePattern'
 import { Playground } from './sections/Playground'
+import { ZkProof } from './sections/ZkProof'
 import { Architecture } from './sections/Architecture'
 import { WhyVenziq } from './sections/WhyVenziq'
 import { Vision } from './sections/Vision'
@@ -54,6 +55,7 @@ export default function App() {
         <Platform />
         <CorePattern />
         <Playground />
+        <ZkProof />
         <Architecture />
         <WhyVenziq />
         <Vision />
