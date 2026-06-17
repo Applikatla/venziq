@@ -41,6 +41,8 @@ interface LogoMarkProps {
   idle?: boolean
   className?: string
   title?: string
+  /** purely decorative use (e.g. inside a labelled control): no role/label, aria-hidden */
+  decorative?: boolean
 }
 
 /** Standalone mark — used in the hero (large, animated) and as the favicon source. */
@@ -51,6 +53,7 @@ export function LogoMark({
   idle = false,
   className,
   title = 'VENZIQ',
+  decorative = false,
 }: LogoMarkProps) {
   const gradId = useId()
   const reduce = useReducedMotion()
@@ -76,8 +79,9 @@ export function LogoMark({
       height={size}
       viewBox="0 0 116 96"
       className={className}
-      role="img"
-      aria-label={title}
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : title}
+      aria-hidden={decorative ? 'true' : undefined}
     >
       {tone === 'gradient' && (
         <defs>
