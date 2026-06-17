@@ -4,10 +4,12 @@ import { useTheme } from './theme-context'
 export interface ThemeColors {
   bg: string
   ink: string
+  muted: string
   faint: string
   accent: string
   accent2: string
   threat: string
+  isLight: boolean
 }
 
 function read(name: string): string {
@@ -21,13 +23,14 @@ export function useThemeColors(): ThemeColors {
     () => ({
       bg: read('--bg') || '#0a0d12',
       ink: read('--ink') || '#ecede8',
-      faint: read('--faint') || '#6b7280',
+      muted: read('--muted') || '#9aa0ac',
+      faint: read('--faint') || '#8c94a2',
       accent: read('--accent') || '#b6f25f',
       accent2: read('--accent-2') || '#a78bfa',
       threat: read('--threat') || '#ff5e3a',
+      isLight: theme === 'light',
     }),
     // re-read whenever the theme flips
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [theme],
   )
 }

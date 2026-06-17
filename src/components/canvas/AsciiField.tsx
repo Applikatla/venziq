@@ -52,6 +52,10 @@ export function AsciiField({ className }: { className?: string }) {
           ctx.font = '13px JetBrains Mono, ui-monospace, monospace'
           ctx.textBaseline = 'middle'
 
+          // light mode needs darker glyphs at higher alpha to read on bone
+          const baseAlpha = colors.isLight ? 0.3 : 0.14
+          const baseColor = colors.isLight ? colors.muted : colors.faint
+
           const ox = ((time * 6) % CELL) - CELL
           const oy = ((time * 4) % CELL) - CELL
 
@@ -74,8 +78,8 @@ export function AsciiField({ className }: { className?: string }) {
             for (let c = 0; c < cols; c++) {
               const x = c * CELL + ox
               const y = r * CELL + oy
-              let alpha = 0.14
-              let color = colors.faint
+              let alpha = baseAlpha
+              let color = baseColor
               let glyph = GLYPHS[glyphIndex[r * cols + c]]
 
               if (pointer) {
@@ -83,7 +87,7 @@ export function AsciiField({ className }: { className?: string }) {
                 const dy = y - py
                 const d2 = dx * dx + dy * dy
                 if (d2 < r2) {
-                  alpha = 0.14 + (1 - d2 / r2) * 0.7
+                  alpha = baseAlpha + (1 - d2 / r2) * 0.75
                   color = colors.accent
                 }
               }
@@ -114,7 +118,10 @@ export function AsciiField({ className }: { className?: string }) {
           ctx.clearRect(0, 0, width, height)
           ctx.font = '13px JetBrains Mono, ui-monospace, monospace'
           ctx.textBaseline = 'middle'
-          ctx.fillStyle = withAlpha(colors.faint, 0.16)
+          ctx.fillStyle = withAlpha(
+            colors.isLight ? colors.muted : colors.faint,
+            colors.isLight ? 0.4 : 0.16,
+          )
           const c2 = Math.ceil(width / CELL) + 1
           const r2 = Math.ceil(height / CELL) + 1
           for (let r = 0; r < r2; r++) {

@@ -59,8 +59,10 @@ export function Hero() {
         <div
           className="absolute inset-0"
           style={{
+            // clear the field behind the headline, keep it alive on the right,
+            // fade to bg at the far edges
             background:
-              'radial-gradient(125% 95% at 78% 38%, transparent 0%, var(--bg) 76%)',
+              'radial-gradient(58% 64% at 30% 46%, var(--bg) 0%, transparent 72%), radial-gradient(125% 95% at 80% 36%, transparent 0%, var(--bg) 82%)',
           }}
         />
       </div>
