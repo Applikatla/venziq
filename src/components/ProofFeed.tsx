@@ -102,8 +102,7 @@ export function ProofFeed() {
   return (
     <div
       className="font-mono text-[0.78rem] sm:text-[0.85rem]"
-      aria-label="Live verification proof feed cycling through agent action, zero-knowledge verification, and blockchain commit"
-      role="img"
+      aria-hidden="true"
     >
       <div className="flex flex-col gap-1.5">
         <AnimatePresence initial={false}>
