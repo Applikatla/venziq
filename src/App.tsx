@@ -3,6 +3,7 @@ import { useReducedMotion } from 'motion/react'
 import { Nav } from './components/layout/Nav'
 import { SiteFooter } from './components/layout/SiteFooter'
 import { CursorRing } from './components/CursorRing'
+import { AmbientLayer } from './components/ambient/AmbientLayer'
 import { AutonomousAgent } from './components/AutonomousAgent'
 import { ProofSpine } from './components/ProofSpine'
 import { TrustHUD } from './components/hud/TrustHUD'
@@ -38,6 +39,7 @@ export default function App() {
   return (
     <>
       <BootSequence />
+      <AmbientLayer />
       <CursorRing />
       <AutonomousAgent />
       <ShieldOverlay />

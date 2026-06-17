@@ -303,6 +303,98 @@
   }
 }
 
+/* ───────────────────────────────────────────────────────────────────────
+   Ambient design layer — purely decorative, non-interactive, theme-aware.
+   Every piece is aria-hidden + pointer-events:none and freezes under the
+   reduced-motion guard below.
+
+   .ambient-field  drifting aurora blooms (accent + violet) over a faint
+                   blueprint dot-grid, painted BEHIND all content (z -1) so
+                   the flat mid-page sections gain living depth.
+   .specimen-frame corner registration marks that frame the viewport like a
+                   photographic specimen plate — reinforces the brand idea.
+   .ambient-grain  ultra-subtle film grain for an analog, instrument feel.
+   ─────────────────────────────────────────────────────────────────────── */
+.ambient-field {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(closest-side, var(--accent-soft), transparent 72%),
+    radial-gradient(closest-side, var(--accent-2-soft), transparent 72%);
+  background-repeat: no-repeat;
+  background-size: 62vw 62vw, 54vw 54vw;
+  background-position: 8% 12%, 92% 80%;
+  animation: vzqdrift 32s ease-in-out infinite alternate;
+}
+.ambient-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--hairline) 1px, transparent 1.5px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 26%, #000 32%, transparent 82%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 26%, #000 32%, transparent 82%);
+  opacity: 0.7;
+}
+@keyframes vzqdrift {
+  0% {
+    background-position: 8% 12%, 92% 80%;
+  }
+  100% {
+    background-position: 16% 22%, 82% 68%;
+  }
+}
+
+.specimen-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 41;
+  pointer-events: none;
+}
+.specimen-frame i {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border: 0 solid var(--faint);
+  opacity: 0.5;
+}
+.specimen-frame i.tl {
+  top: 16px;
+  left: 16px;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+}
+.specimen-frame i.tr {
+  top: 16px;
+  right: 16px;
+  border-top-width: 1.5px;
+  border-right-width: 1.5px;
+}
+.specimen-frame i.bl {
+  bottom: 16px;
+  left: 16px;
+  border-bottom-width: 1.5px;
+  border-left-width: 1.5px;
+}
+.specimen-frame i.br {
+  bottom: 16px;
+  right: 16px;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+}
+
+.ambient-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
 /* global reduced-motion guard. Individual components also branch on
    useReducedMotion(); this is the belt-and-suspenders CSS layer. */
 @media (prefers-reduced-motion: reduce) {
