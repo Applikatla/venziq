@@ -97,7 +97,7 @@ export function Hero() {
 
         <motion.div className="mt-10 flex items-center gap-5" {...rise(0.28)}>
           <MagneticButton onClick={() => scrollToId(CONTACT_ID)}>
-            Request access
+            Let&apos;s connect
           </MagneticButton>
           <LogoMark size={48} tone="gradient" animate />
         </motion.div>

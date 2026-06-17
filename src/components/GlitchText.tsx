@@ -64,13 +64,24 @@ export function GlitchText({
   }
 
   const Comp = Tag as ComponentType<TagProps>
+  // The real text always holds the layout; the glitched copy is overlaid
+  // absolutely so corruption never changes the box size (no reflow / shift).
   return (
-    <Comp
-      className={className}
-      onMouseEnter={run}
-      style={glitching ? { color: 'var(--threat)' } : undefined}
-    >
-      {display}
+    <Comp className={className} onMouseEnter={run} style={{ position: 'relative' }}>
+      <span style={{ visibility: glitching ? 'hidden' : 'visible' }}>{text}</span>
+      {glitching && (
+        <span
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            color: 'var(--threat)',
+            pointerEvents: 'none',
+          }}
+        >
+          {display}
+        </span>
+      )}
     </Comp>
   )
 }

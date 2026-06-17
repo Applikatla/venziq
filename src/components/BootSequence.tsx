@@ -46,8 +46,8 @@ export function BootSequence() {
   useEffect(() => {
     if (!visible) return
     const timers: ReturnType<typeof setTimeout>[] = []
-    LINES.forEach((_, i) => timers.push(setTimeout(() => setStep(i + 1), 220 + i * 230)))
-    timers.push(setTimeout(() => dismiss(), 220 + LINES.length * 230 + 350))
+    LINES.forEach((_, i) => timers.push(setTimeout(() => setStep(i + 1), 140 + i * 150)))
+    timers.push(setTimeout(() => dismiss(), 140 + LINES.length * 150 + 250))
     document.body.style.overflow = 'hidden'
 
     const onKey = (e: KeyboardEvent) => {

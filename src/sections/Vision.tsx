@@ -66,7 +66,7 @@ export function Vision() {
         <ScrollReveal delay={0.2}>
           <div className="mt-12">
             <MagneticButton onClick={() => scrollToId(CONTACT_ID)} strength={0.4}>
-              Request access
+              Let&apos;s connect
             </MagneticButton>
           </div>
         </ScrollReveal>

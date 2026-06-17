@@ -120,7 +120,7 @@ export function Nav() {
             className="hidden rounded-full px-4 py-2 text-[0.85rem] font-medium sm:inline-flex"
             style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}
           >
-            Request access
+            Let&apos;s connect
           </button>
           <button
             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-hairline lg:hidden"
@@ -135,14 +135,25 @@ export function Nav() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            className="glass-strong fixed inset-x-3 top-[68px] z-40 origin-top rounded-2xl p-5 lg:hidden"
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="flex flex-col gap-1">
+          <>
+            <motion.div
+              className="fixed inset-0 z-30 lg:hidden"
+              style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(2px)' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setOpen(false)}
+            />
+            <motion.div
+              className="fixed inset-x-3 top-[68px] z-40 origin-top overflow-hidden rounded-2xl border border-hairline p-5 lg:hidden"
+              style={{ background: 'var(--raised)', boxShadow: 'var(--glass-shadow)' }}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="flex flex-col gap-1">
               {NAV_LINKS.map((l) => (
                 <button
                   key={l.id}
@@ -159,11 +170,12 @@ export function Nav() {
                   className="rounded-full px-4 py-2 text-sm font-medium"
                   style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}
                 >
-                  Request access
+                  Let&apos;s connect
                 </button>
               </div>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

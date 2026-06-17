@@ -104,8 +104,9 @@ export function ProofFeed() {
       className="font-mono text-[0.78rem] sm:text-[0.85rem]"
       aria-hidden="true"
     >
-      <div className="flex flex-col gap-1.5">
-        <AnimatePresence initial={false}>
+      {/* fixed height + clipped so row cycling never shifts the section */}
+      <div className="flex h-[4.75rem] flex-col justify-end gap-1.5 overflow-hidden">
+        <AnimatePresence initial={false} mode="popLayout">
           {rows.map((row, i) => {
             const isActive = i === rows.length - 1
             const typingThis = isActive && !reduce && phase === 'typing'
