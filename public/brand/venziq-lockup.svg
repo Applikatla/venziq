@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100" role="img" aria-label="VENZIQ">
+  <title>VENZIQ lockup</title>
+  <desc>VENZIQ wordmark with the proof-tick Q. Canonical source is the Logo React component; this reference uses the Space Grotesk display font.</desc>
+  <text x="2" y="78" font-family="'Space Grotesk Variable','Space Grotesk',system-ui,sans-serif" font-weight="700" font-size="78" letter-spacing="-2" fill="#0e1116">VENZI</text>
+  <g transform="translate(202 13.5) scale(0.8)" fill="none" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <circle stroke="#0e1116" cx="46" cy="46" r="34"/>
+    <path stroke="#0e1116" d="M33 54 L54 76 L88 30"/>
+    <path stroke="#2f6b0e" d="M88 30 L104 18"/>
+  </g>
+</svg>
