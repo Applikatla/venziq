@@ -20,7 +20,7 @@ export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURICompon
   "Let's connect with VENZIQ",
 )}`
 
-/** Open the user's mail client to the VENZIQ contact address. */
+/** Open the VENZIQ contact email in a new tab, leaving the site on the same page. */
 export function openContact() {
-  window.location.href = CONTACT_MAILTO
+  window.open(CONTACT_MAILTO, '_blank', 'noopener,noreferrer')
 }

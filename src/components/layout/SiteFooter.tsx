@@ -54,7 +54,12 @@ export function SiteFooter() {
               <p className="mono-eyebrow mb-4">Company</p>
               <ul className="space-y-3 text-sm text-muted">
                 <li>
-                  <a href={CONTACT_MAILTO} className="transition-colors hover:text-ink">
+                  <a
+                    href={CONTACT_MAILTO}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-ink"
+                  >
                     Contact
                   </a>
                 </li>
