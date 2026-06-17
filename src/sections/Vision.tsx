@@ -1,8 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { ScrollReveal } from '../components/ScrollReveal'
 import { MagneticButton } from '../components/MagneticButton'
-import { scrollToId } from '../lib/scroll'
-import { CONTACT_ID } from '../lib/nav'
+import { openContact } from '../lib/nav'
 import { useTrust } from '../lib/trust-context'
 
 const NodeLattice = lazy(() =>
@@ -65,7 +64,7 @@ export function Vision() {
 
         <ScrollReveal delay={0.2}>
           <div className="mt-12">
-            <MagneticButton onClick={() => scrollToId(CONTACT_ID)} strength={0.4}>
+            <MagneticButton onClick={openContact} strength={0.4}>
               Let&apos;s connect
             </MagneticButton>
           </div>

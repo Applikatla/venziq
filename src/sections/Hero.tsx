@@ -11,8 +11,7 @@ import { DecodeHeadline } from '../components/DecodeHeadline'
 import { HeroBackdrop } from '../components/canvas/HeroBackdrop'
 import { MagneticButton } from '../components/MagneticButton'
 import { TrustPrinciples } from '../components/TrustPrinciples'
-import { scrollToId } from '../lib/scroll'
-import { CONTACT_ID } from '../lib/nav'
+import { openContact } from '../lib/nav'
 
 export function Hero() {
   const reduce = useReducedMotion()
@@ -96,9 +95,7 @@ export function Hero() {
         </motion.p>
 
         <motion.div className="mt-10 flex items-center gap-5" {...rise(0.28)}>
-          <MagneticButton onClick={() => scrollToId(CONTACT_ID)}>
-            Let&apos;s connect
-          </MagneticButton>
+          <MagneticButton onClick={openContact}>Let&apos;s connect</MagneticButton>
           <LogoMark size={48} tone="gradient" animate />
         </motion.div>
 

@@ -4,7 +4,7 @@ import { Menu, X, Command } from 'lucide-react'
 import { Logo } from '../Logo'
 import { ThemeToggle } from '../ThemeToggle'
 import { openCommandPalette } from '../../lib/command'
-import { NAV_LINKS, CONTACT_ID } from '../../lib/nav'
+import { NAV_LINKS, openContact } from '../../lib/nav'
 import { scrollToId, scrollToTop } from '../../lib/scroll'
 import { useTrust } from '../../lib/trust-context'
 
@@ -116,7 +116,7 @@ export function Nav() {
           </button>
           <ThemeToggle className="hidden sm:inline-flex" />
           <button
-            onClick={() => go(CONTACT_ID)}
+            onClick={openContact}
             className="hidden rounded-full px-4 py-2 text-[0.85rem] font-medium sm:inline-flex"
             style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}
           >
@@ -166,7 +166,10 @@ export function Nav() {
               <div className="mt-2 flex items-center justify-between border-t border-hairline pt-4">
                 <ThemeToggle />
                 <button
-                  onClick={() => go(CONTACT_ID)}
+                  onClick={() => {
+                    setOpen(false)
+                    openContact()
+                  }}
                   className="rounded-full px-4 py-2 text-sm font-medium"
                   style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}
                 >

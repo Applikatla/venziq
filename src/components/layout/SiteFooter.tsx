@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react'
 import { LogoMark } from '../Logo'
-import { NAV_LINKS, CONTACT_URL } from '../../lib/nav'
+import { NAV_LINKS, CONTACT_URL, CONTACT_MAILTO } from '../../lib/nav'
 import { scrollToId } from '../../lib/scroll'
 import { useTrust } from '../../lib/trust-context'
 
@@ -54,7 +54,7 @@ export function SiteFooter() {
               <p className="mono-eyebrow mb-4">Company</p>
               <ul className="space-y-3 text-sm text-muted">
                 <li>
-                  <a href={CONTACT_URL} className="transition-colors hover:text-ink">
+                  <a href={CONTACT_MAILTO} className="transition-colors hover:text-ink">
                     Contact
                   </a>
                 </li>
