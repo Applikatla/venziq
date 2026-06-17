@@ -1,8 +1,8 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import {
+  AnimatePresence,
   motion,
   useScroll,
-  useTransform,
   useMotionValueEvent,
   useReducedMotion,
 } from 'motion/react'
@@ -41,16 +41,16 @@ export function ChaosToOrder() {
   const containerRef = useRef<HTMLDivElement>(null)
   const progress = useRef(0)
 
+  const [verified, setVerified] = useState(false)
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   })
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     progress.current = v
+    setVerified(v >= 0.46)
   })
-
-  const unverifiedOpacity = useTransform(scrollYProgress, [0.1, 0.4], [0.85, 0])
-  const verifiedOpacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 1])
 
   const canvasRef = useAnimatedCanvas(
     (): Renderer => {
@@ -174,20 +174,19 @@ export function ChaosToOrder() {
               verified order
             </span>
           ) : (
-            <div className="relative font-mono text-sm tracking-[0.25em]">
+            <AnimatePresence mode="wait">
               <motion.span
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap uppercase"
-                style={{ color: 'var(--threat)', opacity: unverifiedOpacity }}
+                key={verified ? 'v' : 'u'}
+                className="whitespace-nowrap font-mono text-sm uppercase tracking-[0.25em]"
+                style={{ color: verified ? 'var(--accent)' : 'var(--threat)' }}
+                initial={{ opacity: 0, filter: 'blur(6px)' }}
+                animate={{ opacity: 1, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, filter: 'blur(6px)' }}
+                transition={{ duration: 0.3 }}
               >
-                unverified
+                {verified ? 'verified order ✓' : 'unverified'}
               </motion.span>
-              <motion.span
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap uppercase"
-                style={{ color: 'var(--accent)', opacity: verifiedOpacity }}
-              >
-                verified order
-              </motion.span>
-            </div>
+            </AnimatePresence>
           )}
         </div>
       </div>

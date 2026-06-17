@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState, type PointerEvent } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { Rocket, Share2, Database, Cable, KeyRound, Landmark, Check, type LucideIcon } from 'lucide-react'
 import { Section, Eyebrow } from '../components/Section'
@@ -20,42 +20,19 @@ const POINTS: Point[] = [
   { icon: Landmark, title: 'Standards seat', desc: 'Active engagement with regulators and standards bodies.' },
 ]
 
-// perimeter order for a 3-col / 2-row grid, so the connecting web reads as a ring
-const RING = [0, 1, 2, 5, 4, 3]
-
-interface Pt {
-  x: number
-  y: number
-}
-
 export function WhyVenziq() {
   const reduce = useReducedMotion()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const tileRefs = useRef<(HTMLDivElement | null)[]>([])
-  const [centers, setCenters] = useState<Pt[]>([])
+  const gridRef = useRef<HTMLDivElement>(null)
   const [examined, setExamined] = useState<Set<number>>(() => new Set())
 
-  useEffect(() => {
-    const measure = () => {
-      const base = containerRef.current?.getBoundingClientRect()
-      if (!base) return
-      setCenters(
-        tileRefs.current.map((el) => {
-          if (!el) return { x: 0, y: 0 }
-          const r = el.getBoundingClientRect()
-          return { x: r.left - base.left + r.width / 2, y: r.top - base.top + r.height / 2 }
-        }),
-      )
-    }
-    measure()
-    const ro = new ResizeObserver(measure)
-    if (containerRef.current) ro.observe(containerRef.current)
-    window.addEventListener('resize', measure)
-    return () => {
-      ro.disconnect()
-      window.removeEventListener('resize', measure)
-    }
-  }, [])
+  // cursor-tracked spotlight (written straight to CSS vars, no re-render)
+  const onMove = (e: PointerEvent<HTMLDivElement>) => {
+    const el = gridRef.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    el.style.setProperty('--mx', `${e.clientX - r.left}px`)
+    el.style.setProperty('--my', `${e.clientY - r.top}px`)
+  }
 
   const mark = (i: number) =>
     setExamined((prev) => {
@@ -68,12 +45,6 @@ export function WhyVenziq() {
   const count = examined.size
   const total = POINTS.length
   const complete = count >= total
-  const webOpacity = 0.08 + (count / total) * 0.5
-
-  const ringPath =
-    centers.length === total
-      ? RING.map((idx, k) => `${k === 0 ? 'M' : 'L'} ${centers[idx].x} ${centers[idx].y}`).join(' ') + ' Z'
-      : ''
 
   return (
     <Section id="why" panel>
@@ -81,8 +52,8 @@ export function WhyVenziq() {
         <Eyebrow>Why VENZIQ</Eyebrow>
         <DecodeHeadline text="Built to be hard to replicate" className="text-4xl font-semibold md:text-5xl" />
         <p className="mt-6 text-lg text-muted">
-          Defensibility comes from the shape of the system, not a single feature. Examine each
-          edge — the moat completes as you go.
+          Defensibility comes from the shape of the system, not a single feature. The moat
+          completes as you examine each edge.
         </p>
       </div>
 
@@ -106,21 +77,22 @@ export function WhyVenziq() {
         </span>
       </div>
 
-      <div ref={containerRef} className="relative mt-8">
-        {/* connecting web — strengthens as more edges are examined */}
-        {ringPath && (
-          <svg className="pointer-events-none absolute inset-0 z-0 h-full w-full" aria-hidden="true">
-            <path
-              d={ringPath}
-              fill="none"
-              stroke="var(--accent)"
-              strokeWidth="1"
-              style={{ opacity: webOpacity, transition: 'opacity 0.5s' }}
-            />
-            {centers.map((c, i) => (
-              <circle key={i} cx={c.x} cy={c.y} r="3" fill="var(--accent)" style={{ opacity: examined.has(i) ? 0.9 : 0.15, transition: 'opacity 0.4s' }} />
-            ))}
-          </svg>
+      <div
+        ref={gridRef}
+        onPointerMove={onMove}
+        className="group relative mt-8"
+        style={{ '--mx': '50%', '--my': '50%' } as React.CSSProperties}
+      >
+        {/* cursor spotlight */}
+        {!reduce && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-6 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{
+              background:
+                'radial-gradient(360px circle at var(--mx) var(--my), var(--accent-soft), transparent 60%)',
+            }}
+          />
         )}
 
         <div className="relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -130,9 +102,6 @@ export function WhyVenziq() {
             return (
               <div
                 key={p.title}
-                ref={(el) => {
-                  tileRefs.current[i] = el
-                }}
                 tabIndex={0}
                 role="group"
                 aria-label={`${p.title}. ${p.desc}`}
@@ -140,7 +109,12 @@ export function WhyVenziq() {
                 onFocus={() => mark(i)}
                 className="rounded-[var(--radius)] outline-none"
               >
-                <SpecimenCard serial={`DEF-${String(i + 1).padStart(2, '0')}`} interactive tilt className="h-full">
+                <SpecimenCard
+                  serial={`DEF-${String(i + 1).padStart(2, '0')}`}
+                  interactive
+                  tilt
+                  className="h-full"
+                >
                   <div className="flex items-center justify-between">
                     <div
                       className="flex h-10 w-10 items-center justify-center rounded-[var(--radius)] border transition-colors duration-300"

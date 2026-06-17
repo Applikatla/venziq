@@ -1,4 +1,4 @@
-import { useId } from 'react'
+import { useId, useState } from 'react'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
 
 /*
@@ -115,7 +115,6 @@ export function LogoMark({
 interface LogoProps {
   /** rendered pixel height of the lockup */
   height?: number
-  animate?: boolean
   className?: string
 }
 
@@ -125,16 +124,18 @@ interface LogoProps {
   the display font; the final Q is the proof mark. Option-C colour: ink body,
   accent tip. viewBox is 3:1.
 */
-export function Logo({ height = 30, animate = false, className }: LogoProps) {
+export function Logo({ height = 30, className }: LogoProps) {
   const reduce = useReducedMotion()
-  const shouldAnimate = animate && !reduce
+  // dynamic: the tick draws on mount and re-draws on hover (re-keyed group)
+  const [replay, setReplay] = useState(0)
+  const animated = !reduce
 
   // Q glyph transform: scale the mark to the wordmark cap height and seat it
   // snug after "VENZI". Tuned against Space Grotesk 700 at this size.
   const Q = (
     <g transform="translate(202 13.5) scale(0.8)">
-      {shouldAnimate ? (
-        <motion.g initial="hidden" animate="shown">
+      {animated ? (
+        <motion.g key={replay} initial="hidden" animate="shown">
           <motion.circle
             fill="none" stroke="var(--ink)" strokeWidth={STROKE} strokeLinecap="round" strokeLinejoin="round"
             cx={BOWL.cx} cy={BOWL.cy} r={BOWL.r} custom={1} variants={draw}
@@ -166,26 +167,17 @@ export function Logo({ height = 30, animate = false, className }: LogoProps) {
       className={className}
       role="img"
       aria-label="VENZIQ"
+      onPointerEnter={() => animated && setReplay((r) => r + 1)}
+      style={{ overflow: 'visible' }}
     >
       <title>VENZIQ</title>
-      {shouldAnimate ? (
-        <motion.text
-          x="2" y="78"
-          fontFamily="var(--font-display)" fontWeight={700} fontSize={78}
-          letterSpacing="-2" fill="var(--ink)"
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}
-        >
-          VENZI
-        </motion.text>
-      ) : (
-        <text
-          x="2" y="78"
-          fontFamily="var(--font-display)" fontWeight={700} fontSize={78}
-          letterSpacing="-2" fill="var(--ink)"
-        >
-          VENZI
-        </text>
-      )}
+      <text
+        x="2" y="78"
+        fontFamily="var(--font-display)" fontWeight={700} fontSize={78}
+        letterSpacing="-2" fill="var(--ink)"
+      >
+        VENZI
+      </text>
       {Q}
     </svg>
   )
