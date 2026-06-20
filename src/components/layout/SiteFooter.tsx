@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
 import { LogoMark } from '../Logo'
 import { NAV_LINKS, CONTACT_URL, CONTACT_MAILTO } from '../../lib/nav'
-import { scrollToId } from '../../lib/scroll'
+import { navigate } from '../../lib/router'
 import { useTrust } from '../../lib/trust-context'
 
 export function SiteFooter() {
@@ -56,7 +56,7 @@ export function SiteFooter() {
                 {NAV_LINKS.map((l) => (
                   <li key={l.id}>
                     <button
-                      onClick={() => scrollToId(l.id)}
+                      onClick={() => navigate(`/platform#${l.id}`)}
                       className="text-sm text-muted transition-colors hover:text-ink"
                     >
                       {l.label}

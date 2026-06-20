@@ -46,3 +46,9 @@ export function scrollToTop(): void {
   if (lenis) lenis.scrollTo(0)
   else window.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+/** Jump to the top instantly — used on client-side page navigation. */
+export function resetScroll(): void {
+  if (lenis) lenis.scrollTo(0, { immediate: true })
+  window.scrollTo(0, 0)
+}
