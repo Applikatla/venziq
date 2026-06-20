@@ -25,7 +25,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem(THEME_STORAGE_KEY, theme)
     } catch {
-      /* storage unavailable — non-fatal */
+      /* storage unavailable - non-fatal */
     }
   }, [theme])
 

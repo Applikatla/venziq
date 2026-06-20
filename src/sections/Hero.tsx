@@ -6,12 +6,14 @@ import {
   useTransform,
   useReducedMotion,
 } from 'motion/react'
+import { ArrowRight } from 'lucide-react'
 import { LogoMark } from '../components/Logo'
 import { DecodeHeadline } from '../components/DecodeHeadline'
 import { HeroBackdrop } from '../components/canvas/HeroBackdrop'
 import { MagneticButton } from '../components/MagneticButton'
 import { TrustPrinciples } from '../components/TrustPrinciples'
 import { openContact } from '../lib/nav'
+import { RouteLink } from '../components/RouteLink'
 
 export function Hero() {
   const reduce = useReducedMotion()
@@ -74,14 +76,14 @@ export function Hero() {
 
       <div className="shell relative w-full">
         <motion.p className="mono-eyebrow mb-6" {...rise(0)}>
-          AI-Native Trust Infrastructure
+          Trust layer for enterprise AI agents
         </motion.p>
 
         <motion.div {...rise(0.08)}>
           <DecodeHeadline
             as="h1"
             trigger="mount"
-            text="Trust Infrastructure for the AI Economy"
+            text="Make every AI action provable"
             className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl"
           />
         </motion.div>
@@ -90,13 +92,23 @@ export function Hero() {
           className="mt-7 max-w-2xl text-lg text-muted md:text-xl"
           {...rise(0.18)}
         >
-          The future of AI is not just about intelligence. It is about{' '}
-          <span className="text-ink">trusted intelligence.</span>
+          VENZIQ is the trust layer for enterprise AI agents. Every action an agent takes is{' '}
+          <span className="text-ink">
+            secured, verified with a zero-knowledge proof, and recorded as a permanent audit trail
+          </span>
+          . Your autonomous systems stay compliant and accountable.
         </motion.p>
 
-        <motion.div className="mt-10 flex items-center gap-5" {...rise(0.28)}>
+        <motion.div className="mt-10 flex flex-wrap items-center gap-4" {...rise(0.28)}>
           <MagneticButton onClick={openContact}>Let&apos;s connect</MagneticButton>
-          <LogoMark size={48} tone="gradient" animate />
+          <RouteLink
+            to="/platform"
+            className="inline-flex items-center gap-2 rounded-full border border-hairline px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent"
+          >
+            See how it works
+            <ArrowRight size={15} aria-hidden="true" />
+          </RouteLink>
+          <LogoMark size={42} tone="gradient" animate className="ml-1 hidden sm:block" />
         </motion.div>
 
         <motion.div

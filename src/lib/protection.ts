@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 /*
-  Global "protection" state — the Threat <-> Trust world switch. When unprotected,
+  Global "protection" state - the Threat <-> Trust world switch. When unprotected,
   a [data-unprotected] attribute on <html> recolors the accent to the threat tone
   and a degraded overlay appears, flipping the whole page into the "without VENZIQ"
   reality. Backed by a custom event so any component can react.

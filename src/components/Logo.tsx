@@ -2,7 +2,7 @@ import { useId, useState } from 'react'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
 
 /*
-  VENZIQ mark — "the letter is the proof".
+  VENZIQ mark - "the letter is the proof".
   A Q whose tail starts inside the bowl, crosses the lower-right edge, and rises
   up-right into a verification tick. One shape carries the letter and the proof.
 
@@ -37,7 +37,7 @@ interface LogoMarkProps {
   size?: number
   tone?: Tone
   animate?: boolean
-  /** quiet idle re-verification pulse on the tick — hero only */
+  /** quiet idle re-verification pulse on the tick - hero only */
   idle?: boolean
   className?: string
   title?: string
@@ -45,7 +45,7 @@ interface LogoMarkProps {
   decorative?: boolean
 }
 
-/** Standalone mark — used in the hero (large, animated) and as the favicon source. */
+/** Standalone mark - used in the hero (large, animated) and as the favicon source. */
 export function LogoMark({
   size = 40,
   tone = 'accent',

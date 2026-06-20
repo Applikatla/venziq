@@ -25,7 +25,7 @@ function Equalizer() {
   )
 }
 
-/* Live, incrementing block height — gives the ledger a sense of a running chain. */
+/* Live, incrementing block height - gives the ledger a sense of a running chain. */
 function BlockHeight() {
   const reduce = useReducedMotion()
   const [h, setH] = useState(18_493_204)

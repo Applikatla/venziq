@@ -5,7 +5,7 @@ import { LogoMark } from './Logo'
 /*
   Theme toggle as a small instrument: a two-stop track whose sliding knob IS the
   VENZIQ Q mark. The Q re-draws itself each time you flip themes and glides
-  between the dark/light stops — on brand, not a generic sun/moon. The two stops
+  between the dark/light stops - on brand, not a generic sun/moon. The two stops
   sit faded behind the knob so the switch still reads as a two-position control.
 */
 export function ThemeToggle({ className }: { className?: string }) {
@@ -31,7 +31,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         <RingIcon active={!isDark} />
       </span>
 
-      {/* sliding Q knob — re-keyed on theme so the mark re-draws on every toggle */}
+      {/* sliding Q knob - re-keyed on theme so the mark re-draws on every toggle */}
       <motion.span
         aria-hidden="true"
         className="absolute top-1 z-10 grid h-6 w-7 place-items-center rounded-full"

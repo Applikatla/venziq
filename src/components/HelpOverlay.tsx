@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { HELP_OPEN_EVENT } from '../lib/command'
 
 /*
-  Press "?" to reveal the site's interactive features — most are hidden by design
+  Press "?" to reveal the site's interactive features - most are hidden by design
   (command palette, the verify easter egg, the shield switch, tamper, the flip
   cards). This is the discoverability layer.
 */
@@ -12,7 +12,7 @@ interface Item {
   label: string
 }
 const ITEMS: Item[] = [
-  { keys: '⌘K', label: 'Command palette — jump, run a verification, toggle theme' },
+  { keys: '⌘K', label: 'Command palette: jump, run a verification, toggle theme' },
   { keys: 'type "verify"', label: 'Run a page-wide re-verification sweep' },
   { keys: 'shield', label: 'Nav toggle: flip the site into the unprotected world' },
   { keys: 'tamper', label: 'In the playground: forge a proof and watch the chain reject it' },

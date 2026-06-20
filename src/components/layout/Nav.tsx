@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { Menu, X, Command } from 'lucide-react'
+import { Menu, X, Command, ArrowUpRight } from 'lucide-react'
 import { Logo } from '../Logo'
 import { ThemeToggle } from '../ThemeToggle'
 import { ShieldToggle } from '../Shield'
 import { openCommandPalette } from '../../lib/command'
-import { NAV_LINKS, openContact } from '../../lib/nav'
+import { NAV_LINKS, LANDING_LINKS, openContact } from '../../lib/nav'
 import { scrollToId, scrollToTop } from '../../lib/scroll'
 import { useActiveSection } from '../../lib/useActiveSection'
 import { useTrust } from '../../lib/trust-context'
+import { navigate, useRoute } from '../../lib/router'
 
 function SessionDot() {
   const { verified, total } = useTrust()
@@ -35,6 +36,9 @@ export function Nav() {
   const [open, setOpen] = useState(false)
   const reduce = useReducedMotion()
   const active = useActiveSection()
+  const route = useRoute()
+  const isPlatform = route.startsWith('/platform')
+  const links = isPlatform ? NAV_LINKS : LANDING_LINKS
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -61,6 +65,15 @@ export function Nav() {
     setOpen(false)
     scrollToId(id)
   }
+  const goHome = () => {
+    setOpen(false)
+    if (isPlatform) navigate('/')
+    else scrollToTop()
+  }
+  const goPlatform = () => {
+    setOpen(false)
+    navigate('/platform')
+  }
 
   return (
     <header
@@ -78,10 +91,10 @@ export function Nav() {
         aria-label="Primary"
       >
         <a
-          href="#top"
+          href={isPlatform ? '/' : '#top'}
           onClick={(e) => {
             e.preventDefault()
-            scrollToTop()
+            goHome()
           }}
           className="flex items-center"
           aria-label="VENZIQ home"
@@ -90,8 +103,8 @@ export function Nav() {
         </a>
 
         <div className="hidden items-center gap-7 lg:flex">
-          {NAV_LINKS.map((l) => {
-            const isActive = active === l.id
+          {links.map((l) => {
+            const isActive = isPlatform && active === l.id
             return (
               <button
                 key={l.id}
@@ -112,18 +125,28 @@ export function Nav() {
               </button>
             )
           })}
-          <span
-            aria-disabled="true"
-            title="Investors — coming soon"
-            className="cursor-not-allowed select-none text-[0.9rem] text-faint/70"
-          >
-            Investors
-          </span>
+          {isPlatform ? (
+            <span
+              aria-disabled="true"
+              title="Investors (coming soon)"
+              className="cursor-not-allowed select-none text-[0.9rem] text-faint/70"
+            >
+              Investors
+            </span>
+          ) : (
+            <button
+              onClick={goPlatform}
+              className="inline-flex items-center gap-1 text-[0.9rem] text-muted transition-colors hover:text-ink"
+            >
+              Platform
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </button>
+          )}
         </div>
 
         <div className="flex items-center gap-3">
-          <SessionDot />
-          <ShieldToggle className="hidden lg:inline-flex" />
+          {isPlatform && <SessionDot />}
+          {isPlatform && <ShieldToggle className="hidden lg:inline-flex" />}
           <button
             onClick={() => openCommandPalette()}
             aria-label="Open command palette"
@@ -171,28 +194,35 @@ export function Nav() {
               transition={{ duration: 0.2 }}
             >
               <div className="flex flex-col gap-1">
-              {NAV_LINKS.map((l) => (
+                {links.map((l) => (
+                  <button
+                    key={l.id}
+                    onClick={() => go(l.id)}
+                    className="rounded-lg px-3 py-3 text-left text-base text-ink hover:bg-raised"
+                  >
+                    {l.label}
+                  </button>
+                ))}
                 <button
-                  key={l.id}
-                  onClick={() => go(l.id)}
-                  className="rounded-lg px-3 py-3 text-left text-base text-ink hover:bg-raised"
+                  onClick={isPlatform ? goHome : goPlatform}
+                  className="flex items-center gap-1.5 rounded-lg px-3 py-3 text-left text-base text-ink hover:bg-raised"
                 >
-                  {l.label}
+                  {isPlatform ? 'Home' : 'Platform'}
+                  <ArrowUpRight size={15} aria-hidden="true" />
                 </button>
-              ))}
-              <div className="mt-2 flex items-center justify-between border-t border-hairline pt-4">
-                <ThemeToggle />
-                <button
-                  onClick={() => {
-                    setOpen(false)
-                    openContact()
-                  }}
-                  className="rounded-full px-4 py-2 text-sm font-medium"
-                  style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}
-                >
-                  Let&apos;s connect
-                </button>
-              </div>
+                <div className="mt-2 flex items-center justify-between border-t border-hairline pt-4">
+                  <ThemeToggle />
+                  <button
+                    onClick={() => {
+                      setOpen(false)
+                      openContact()
+                    }}
+                    className="rounded-full px-4 py-2 text-sm font-medium"
+                    style={{ background: 'var(--accent)', color: 'var(--accent-ink)' }}
+                  >
+                    Let&apos;s connect
+                  </button>
+                </div>
               </div>
             </motion.div>
           </>

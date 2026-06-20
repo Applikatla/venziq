@@ -128,7 +128,7 @@ export function Playground() {
               {p}
             </button>
           ))}
-          {/* tamper toggle — try to forge the proof */}
+          {/* tamper toggle - try to forge the proof */}
           <button
             type="button"
             onClick={() => setTamper((t) => !t)}
@@ -188,7 +188,7 @@ export function Playground() {
           aria-live="polite"
         >
           {stage === 'idle' && run === null ? (
-            <p className="text-faint">// awaiting action — press run</p>
+            <p className="text-faint">// no action yet, press run</p>
           ) : (
             <div className="space-y-3">
               <PipeRow
@@ -234,14 +234,14 @@ export function Playground() {
                 {run?.tampered ? (
                   <>
                     <X size={15} style={{ color: 'var(--threat)' }} aria-hidden="true" />
-                    <span style={{ color: 'var(--threat)' }}>trust violation blocked</span>
-                    <span className="text-faint">— tampered proof rejected by the chain</span>
+                    <span style={{ color: 'var(--threat)' }}>trust violation blocked.</span>
+                    <span className="text-faint">tampered proof rejected by the chain</span>
                   </>
                 ) : (
                   <>
                     <Check size={15} style={{ color: 'var(--accent)' }} aria-hidden="true" />
-                    <span style={{ color: 'var(--accent)' }}>trusted autonomy</span>
-                    <span className="text-faint">— action verified, proof sealed</span>
+                    <span style={{ color: 'var(--accent)' }}>trusted autonomy.</span>
+                    <span className="text-faint">action verified, proof sealed</span>
                   </>
                 )}
               </motion.div>
@@ -284,7 +284,7 @@ function PipeRow({
         {channel}
       </span>
       <span className="min-w-0 flex-1 truncate text-ink">
-        {value || (pending ? 'working…' : '—')}
+        {value || (pending ? 'working…' : 'idle')}
       </span>
       <span className="shrink-0 text-right" style={{ color: statusColor }}>
         {showStatus ? status : '···'}

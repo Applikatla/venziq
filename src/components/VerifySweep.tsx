@@ -4,7 +4,7 @@ import { Check } from 'lucide-react'
 
 /*
   Easter egg: type "verify" anywhere (outside inputs) to run a one-shot page-wide
-  verification sweep — a lime scan line passes top to bottom and a toast confirms.
+  verification sweep - a lime scan line passes top to bottom and a toast confirms.
   Reduced motion shows just the toast.
 */
 export function VerifySweep() {

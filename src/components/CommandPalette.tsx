@@ -4,7 +4,7 @@ import { Search, ArrowRight, CornerDownLeft } from 'lucide-react'
 import { useTheme } from '../lib/theme-context'
 import { NAV_LINKS, openContact } from '../lib/nav'
 import { toggleProtection } from '../lib/protection'
-import { scrollToId } from '../lib/scroll'
+import { navigate } from '../lib/router'
 import { COMMAND_OPEN_EVENT, openHelp } from '../lib/command'
 
 interface Cmd {
@@ -27,7 +27,7 @@ export function CommandPalette() {
       id: `go-${l.id}`,
       label: `Go to ${l.label}`,
       hint: 'section',
-      run: () => scrollToId(l.id),
+      run: () => navigate(`/platform#${l.id}`),
     }))
     return [
       {
@@ -35,16 +35,16 @@ export function CommandPalette() {
         label: 'Run a verification',
         hint: 'playground',
         run: () => {
-          scrollToId('playground')
+          navigate('/platform#playground')
           window.setTimeout(() => {
             const btn = [...document.querySelectorAll('#playground button')].find((b) =>
               /Run verification/.test(b.textContent ?? ''),
             ) as HTMLButtonElement | undefined
             btn?.click()
-          }, 850)
+          }, 900)
         },
       },
-      { id: 'go-playground', label: 'Go to playground', hint: 'section', run: () => scrollToId('playground') },
+      { id: 'go-playground', label: 'Go to playground', hint: 'section', run: () => navigate('/platform#playground') },
       ...nav,
       { id: 'contact', label: "Let's connect", hint: 'email', run: openContact },
       { id: 'protection', label: 'Toggle protection (threat ⇄ trust)', hint: 'demo', run: toggleProtection },
@@ -149,7 +149,7 @@ export function CommandPalette() {
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Verify console — jump, run, toggle…"
+                placeholder="Verify console: jump, run, toggle…"
                 className="flex-1 bg-transparent font-mono text-sm text-ink outline-none placeholder:text-faint"
                 aria-label="Command search"
               />

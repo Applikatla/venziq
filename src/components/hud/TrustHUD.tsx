@@ -79,7 +79,7 @@ export function TrustHUD() {
                 className="flex items-center gap-2 whitespace-nowrap"
               >
                 {complete ? (
-                  <span style={{ color: 'var(--accent)' }}>page integrity — verified ✓</span>
+                  <span style={{ color: 'var(--accent)' }}>page integrity verified ✓</span>
                 ) : latest ? (
                   <>
                     <span className="text-muted">verify</span>

@@ -3,12 +3,22 @@ export interface NavLink {
   label: string
 }
 
-/** Anchor targets shared by the nav and footer. */
-export const NAV_LINKS: NavLink[] = [
-  { id: 'platform', label: 'Platform' },
-  { id: 'problem', label: 'Problem' },
-  { id: 'architecture', label: 'Architecture' },
+/** In-page anchors on the landing page ("/"). */
+export const LANDING_LINKS: NavLink[] = [
+  { id: 'how', label: 'How it works' },
   { id: 'use-cases', label: 'Use cases' },
+]
+
+/**
+ * Anchor targets on the platform deep-dive page ("/platform"). Also used by the
+ * footer and command palette. Order matches the page; the scrollspy is
+ * order-independent regardless.
+ */
+export const NAV_LINKS: NavLink[] = [
+  { id: 'problem', label: 'Problem' },
+  { id: 'platform', label: 'Platform' },
+  { id: 'pattern', label: 'Core pattern' },
+  { id: 'architecture', label: 'Architecture' },
   { id: 'vision', label: 'Vision' },
 ]
 

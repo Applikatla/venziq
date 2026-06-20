@@ -5,12 +5,13 @@ export interface TrackedSection {
   label: string
 }
 
+/* Sections on the platform deep-dive page that the Proof Spine + Trust HUD track. */
 export const TRACKED: TrackedSection[] = [
-  { id: 'top', label: 'hero' },
   { id: 'problem', label: 'problem' },
   { id: 'platform', label: 'platform' },
-  { id: 'use-cases', label: 'core pattern' },
+  { id: 'pattern', label: 'core pattern' },
   { id: 'playground', label: 'playground' },
+  { id: 'zk', label: 'zero-knowledge' },
   { id: 'architecture', label: 'architecture' },
   { id: 'why', label: 'defensibility' },
   { id: 'vision', label: 'vision' },
