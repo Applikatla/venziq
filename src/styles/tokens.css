@@ -168,7 +168,7 @@
 }
 
 @layer utilities {
-  /* glassmorphism panel — explicitly wanted for this brand */
+  /* glassmorphism panel - explicitly wanted for this brand */
   .glass {
     background: var(--glass);
     backdrop-filter: blur(16px) saturate(160%);
@@ -211,7 +211,7 @@
     color: transparent;
   }
 
-  /* soft radial accent glow — sparingly, behind hero mark and closing CTA */
+  /* soft radial accent glow - sparingly, behind hero mark and closing CTA */
   .accent-glow {
     background: radial-gradient(
       circle at center,
@@ -227,7 +227,7 @@
     );
   }
 
-  /* section vertical rhythm — generous per spec */
+  /* section vertical rhythm - generous per spec */
   .section-pad {
     padding-block: 6rem;
   }
@@ -314,7 +314,7 @@
 }
 
 /* ───────────────────────────────────────────────────────────────────────
-   Ambient design layer — purely decorative, non-interactive, theme-aware.
+   Ambient design layer - purely decorative, non-interactive, theme-aware.
    Every piece is aria-hidden + pointer-events:none and freezes under the
    reduced-motion guard below.
 
@@ -322,7 +322,7 @@
                    blueprint dot-grid, painted BEHIND all content (z -1) so
                    the flat mid-page sections gain living depth.
    .specimen-frame corner registration marks that frame the viewport like a
-                   photographic specimen plate — reinforces the brand idea.
+                   photographic specimen plate - reinforces the brand idea.
    .ambient-grain  ultra-subtle film grain for an analog, instrument feel.
    ─────────────────────────────────────────────────────────────────────── */
 .ambient-field {

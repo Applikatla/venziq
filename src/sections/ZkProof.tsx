@@ -39,11 +39,11 @@ const CAPS = ['finance', 'healthcare', 'deploy', 'legal', 'data'] as const
 type Result = null | 'authorized' | 'denied'
 
 /*
-  Zero-knowledge, made tangible — and on-thesis for VENZIQ: an AI agent proves it
+  Zero-knowledge, made tangible - and on-thesis for VENZIQ: an AI agent proves it
   is AUTHORIZED to perform a chosen sensitive action, without revealing its
   credentials. The prover (agent device) holds a secret clearance level and a set
   of capabilities; the verifier picks an action with a public policy and only ever
-  learns the boolean "authorized / denied" plus a proof hash — never the secret.
+  learns the boolean "authorized / denied" plus a proof hash - never the secret.
 */
 export function ZkProof() {
   const reduce = useReducedMotion()
@@ -111,14 +111,14 @@ export function ZkProof() {
         />
         <p className="mt-6 text-lg text-muted">
           A zero-knowledge proof lets an AI agent prove it is{' '}
-          <span className="text-ink">authorized</span> to act — without revealing its credentials.
+          <span className="text-ink">authorized</span> to act without revealing its credentials.
           Choose an action, set the agent&apos;s secret clearance and capabilities, then generate a
           proof. The verifier only ever learns <span className="text-ink">authorized</span> or{' '}
-          <span className="text-ink">denied</span> — never how.
+          <span className="text-ink">denied</span>, never how.
         </p>
       </div>
 
-      {/* the verifier's request — pick a sensitive action */}
+      {/* the verifier's request - pick a sensitive action */}
       <div className="mt-10">
         <p className="mono-eyebrow">verifier request · action to authorize</p>
         <div
@@ -215,7 +215,7 @@ export function ZkProof() {
           </div>
 
           <p className="mt-4 font-mono text-[0.66rem] text-faint">
-            stays on the agent — never transmitted
+            stays on the agent, never transmitted
           </p>
           <button
             type="button"
@@ -244,7 +244,7 @@ export function ZkProof() {
             </p>
           </div>
           <p className="mt-4 font-mono text-[0.72rem] text-muted">
-            proof <span className="text-ink">{hash || '—'}</span>
+            proof <span className="text-ink">{hash || 'none yet'}</span>
           </p>
           <p className="mt-2 font-mono text-[0.72rem] text-muted">
             checking · <span className="text-ink">{action.label}</span>
@@ -262,7 +262,7 @@ export function ZkProof() {
                 style={{ color: result === 'authorized' ? 'var(--accent)' : 'var(--muted)' }}
               >
                 {result === 'authorized' ? <Check size={15} /> : <X size={15} />}
-                {result === 'authorized' ? 'authorized ✓ — policy satisfied' : 'denied — policy not met'}
+                {result === 'authorized' ? 'authorized, policy satisfied' : 'denied, policy not met'}
               </motion.span>
             )}
           </div>
@@ -270,7 +270,7 @@ export function ZkProof() {
       </div>
 
       <p className="mt-6 font-mono text-[0.72rem] text-faint">
-        // the verifier learns only authorized / denied — the agent&apos;s clearance and
+        // the verifier learns only authorized or denied. the agent&apos;s clearance and
         capabilities never left its device
       </p>
     </Section>

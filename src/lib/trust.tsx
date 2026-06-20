@@ -8,7 +8,7 @@ import {
 } from './trust-context'
 
 /*
-  Shared "trust session" state — the spine of the living-instrument concept.
+  Shared "trust session" state - the spine of the living-instrument concept.
   An rAF poll marks each tracked section "verified" (once) as its top crosses the
   viewport's upper-middle, assigning a proof hash + block number. The Proof Spine
   and Trust HUD both read this. Reduced motion verifies everything immediately.

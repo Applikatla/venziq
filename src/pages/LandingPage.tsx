@@ -14,7 +14,7 @@ const STEPS = [
     n: '01',
     icon: ShieldCheck,
     title: 'An agent acts',
-    body: 'Your AI agent performs a real operation — a trade, a data request, a transaction — on its own.',
+    body: 'Your AI agent performs a real operation on its own: a trade, a data request, a transaction.',
   },
   {
     n: '02',
@@ -26,7 +26,7 @@ const STEPS = [
     n: '03',
     icon: Boxes,
     title: 'The record is sealed',
-    body: 'An immutable audit trail is written on-chain, so anyone can verify exactly what happened — for good.',
+    body: 'An immutable audit trail is written on-chain. Anyone can verify exactly what happened, and the record is permanent.',
   },
 ]
 
@@ -40,8 +40,8 @@ function HowItWorks() {
           className="text-4xl font-semibold md:text-5xl"
         />
         <p className="mt-6 text-lg text-muted">
-          You don&apos;t have to trust an AI agent&apos;s word. With VENZIQ, every action it takes
-          carries its own proof — so trust is something you can check, not something you assume.
+          You shouldn&apos;t have to take an AI agent&apos;s word for it. With VENZIQ, every action
+          an agent takes comes with a proof you can check for yourself.
         </p>
       </div>
 
@@ -81,7 +81,7 @@ function HowItWorks() {
 const FIT = [
   {
     title: 'You run AI agents in production',
-    body: 'Autonomous systems that take real actions — not just chatbots answering questions.',
+    body: 'Autonomous systems that take real actions, not just chatbots answering questions.',
   },
   {
     title: 'You operate under real scrutiny',
@@ -89,7 +89,7 @@ const FIT = [
   },
   {
     title: 'Mistakes are expensive',
-    body: 'Finance, healthcare, government, and critical infrastructure — where unverifiable AI is a liability.',
+    body: 'Finance, healthcare, government, critical infrastructure. In these fields, unverifiable AI is a liability.',
   },
 ]
 

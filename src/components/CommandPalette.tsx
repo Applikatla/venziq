@@ -149,7 +149,7 @@ export function CommandPalette() {
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Verify console — jump, run, toggle…"
+                placeholder="Verify console: jump, run, toggle…"
                 className="flex-1 bg-transparent font-mono text-sm text-ink outline-none placeholder:text-faint"
                 aria-label="Command search"
               />

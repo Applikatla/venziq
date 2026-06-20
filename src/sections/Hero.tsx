@@ -94,9 +94,9 @@ export function Hero() {
         >
           VENZIQ is the trust layer for enterprise AI agents. Every action an agent takes is{' '}
           <span className="text-ink">
-            secured, verified with zero-knowledge proofs, and sealed as an immutable audit trail
-          </span>{' '}
-          — so autonomous AI stays compliant and accountable.
+            secured, verified with a zero-knowledge proof, and recorded as a permanent audit trail
+          </span>
+          . Your autonomous systems stay compliant and accountable.
         </motion.p>
 
         <motion.div className="mt-10 flex flex-wrap items-center gap-4" {...rise(0.28)}>

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { scrollToId, resetScroll } from './scroll'
 
 /*
-  Minimal dependency-free router (History API). The site has just two routes —
-  the landing page ("/") and the platform deep-dive ("/platform") — so a tiny
+  Minimal dependency-free router (History API). The site has just two routes -
+  the landing page ("/") and the platform deep-dive ("/platform") - so a tiny
   custom router keeps the bundle lean and avoids pulling in react-router.
   A `public/_redirects` SPA fallback makes refresh/deep-links work on Netlify.
 */

@@ -36,8 +36,8 @@ function PlatformIntro() {
           className="max-w-4xl text-4xl font-semibold leading-[1.04] tracking-tight md:text-6xl"
         />
         <p className="mt-6 max-w-2xl text-lg text-muted">
-          The products, the technology, and the live demos behind the trust layer — the problem it
-          solves, the five pillars, and the act → prove → seal pattern you can try yourself.
+          The products, the technology, and the live demos behind the trust layer. See the problem
+          it solves, the five pillars, and the act, prove, and seal pattern you can try yourself.
         </p>
       </div>
     </section>

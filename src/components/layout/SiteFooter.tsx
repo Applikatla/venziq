@@ -13,7 +13,7 @@ export function SiteFooter() {
   const copyProof = () => {
     const text = `VENZIQ trust session ${sessionId} · ${verified.length}/${total} verified${
       sealed ? ' · sealed' : ''
-    } — venziq.com`
+    } · venziq.com`
     navigator.clipboard?.writeText(text).then(
       () => {
         setCopied(true)

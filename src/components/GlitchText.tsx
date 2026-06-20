@@ -18,7 +18,7 @@ type TagProps = {
 const GLYPHS = '!<>{}[]/\\=+*#%01xz'
 
 /*
-  Momentary corruption on hover — text briefly glitches into threat-colored glyphs
+  Momentary corruption on hover - text briefly glitches into threat-colored glyphs
   then restores. Used in the problem section to make risk feel unstable. Reduced
   motion: no glitch.
 */

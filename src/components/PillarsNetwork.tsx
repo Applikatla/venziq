@@ -142,7 +142,7 @@ export function PillarsNetwork() {
 
   return (
     <div ref={containerRef} className="relative">
-      {/* connection overlay — above the cards so the network reads.
+      {/* connection overlay - above the cards so the network reads.
           Lines are rendered as glassy neon: a soft blurred halo under a thin,
           translucent bright core. */}
       <svg

@@ -9,7 +9,7 @@ const TERMS = ['AI action', 'ZK verification', 'blockchain audit'] as const
 
 const EXPLAIN: Record<string, string> = {
   'AI action': 'An autonomous agent performs a real operation.',
-  'ZK verification': 'A zero-knowledge proof confirms it was authorized — without revealing the data.',
+  'ZK verification': 'A zero-knowledge proof confirms it was authorized, without revealing the data.',
   'blockchain audit': 'An immutable record is sealed on-chain for anyone to verify.',
   'trusted autonomy': 'The agent acts on its own, and every action stays provable.',
 }

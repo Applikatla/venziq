@@ -2,7 +2,7 @@ import { useAnimatedCanvas, type Renderer, type CanvasFrame } from './useAnimate
 import { useThemeColors, withAlpha } from '../../lib/themeColors'
 
 /*
-  Ambient node-and-edge lattice — the connective-tissue motif. Low density, low
+  Ambient node-and-edge lattice - the connective-tissue motif. Low density, low
   opacity, cursor-reactive. Background, never the star. Paused off-screen,
   reduced motion renders a single static frame.
 */

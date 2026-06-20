@@ -87,7 +87,7 @@ function UseCaseFlip({ uc, index }: { uc: UseCase; index: number }) {
       <button
         type="button"
         onClick={() => setFlipped((f) => !f)}
-        aria-label={`${uc.industry} — ${flipped ? 'show steps' : 'show audit trail'}`}
+        aria-label={`${uc.industry}: ${flipped ? 'show steps' : 'show audit trail'}`}
         className="relative h-full w-full cursor-pointer text-left outline-none"
         style={{
           transformStyle: 'preserve-3d',
@@ -120,7 +120,7 @@ function UseCaseFlip({ uc, index }: { uc: UseCase; index: number }) {
           </p>
         </div>
 
-        {/* back — sealed audit trail */}
+        {/* back - sealed audit trail */}
         <div className={`${face} [transform:rotateY(180deg)]`}>
           <span className="mono-eyebrow absolute right-4 top-4 text-[0.6rem] text-faint">
             UC-{String(index + 1).padStart(2, '0')}
@@ -148,7 +148,7 @@ function UseCaseFlip({ uc, index }: { uc: UseCase; index: number }) {
   )
 }
 
-/* The "where it matters most" scenarios — concrete, skimmable, and self-explanatory. */
+/* The "where it matters most" scenarios - concrete, skimmable, and self-explanatory. */
 export function UseCases({ panel = false }: { panel?: boolean }) {
   return (
     <Section id="use-cases" panel={panel}>
@@ -159,8 +159,8 @@ export function UseCases({ panel = false }: { panel?: boolean }) {
           className="text-4xl font-semibold md:text-5xl"
         />
         <p className="mt-6 text-lg text-muted">
-          The same pattern — act, prove, seal — secures autonomous AI exactly where mistakes are
-          most costly. A few of the scenarios it unlocks:
+          The same act, prove, and seal pattern secures autonomous AI exactly where mistakes are
+          most costly. Here are a few of the scenarios it supports.
         </p>
       </div>
 

@@ -96,7 +96,7 @@ export function BootSequence() {
                 style={{ color: 'var(--accent)' }}
               >
                 <span>✓</span>
-                <span>secure — entering</span>
+                <span>secure, entering</span>
               </motion.div>
             )}
           </div>

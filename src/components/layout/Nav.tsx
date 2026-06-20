@@ -128,7 +128,7 @@ export function Nav() {
           {isPlatform ? (
             <span
               aria-disabled="true"
-              title="Investors — coming soon"
+              title="Investors (coming soon)"
               className="cursor-not-allowed select-none text-[0.9rem] text-faint/70"
             >
               Investors

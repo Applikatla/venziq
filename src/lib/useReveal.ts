@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react'
   IntersectionObserver or scroll listener. IO/scroll-event triggers proved
   unreliable under smooth-scroll/embedded contexts (callbacks not firing on
   programmatic scroll), which can trap content at opacity 0. A rAF poll always
-  sees the current geometry — Lenis already drives rAF — and self-terminates the
+  sees the current geometry - Lenis already drives rAF - and self-terminates the
   moment the element reveals, so there is no lasting cost. Reduced motion shows
   immediately.
 
