@@ -4,20 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Venziq.com</title>
-    <meta
-      name="description"
-      content="VENZIQ is trust infrastructure for the AI economy. Verifiable, secure, private, and compliant infrastructure for autonomous AI agents. It brings AI security, AI agents, zero-knowledge, and a blockchain trust layer together in one platform."
-    />
-    <meta
-      name="keywords"
-      content="AI Security, AI Agents, Blockchain Infrastructure, Zero Knowledge Proofs, Enterprise AI, Trust Infrastructure, Venziq"
-    />
-    <meta name="author" content="VENZIQ" />
+    <!-- Primary Meta Tags -->
+    <title>Venziq | Black Box Recorder for Enterprise AI Agents</title>
+    <meta name="title" content="Venziq | Black Box Recorder for Enterprise AI Agents" />
+    <meta name="description" content="Venziq is a plug-and-play AI trust connector that creates tamper-proof audit trails for autonomous agents using cryptographic proofs and secure verification." />
+    <meta name="keywords" content="AI black box recorder, AI trust infrastructure, tamper-proof AI audit trails, AI agent monitoring, AI accountability platform, LangChain audit logging, verifiable AI execution, AI provenance" />
+    <meta name="author" content="Venziq Technologies" />
     <meta name="theme-color" content="#0a0d12" />
     <link rel="canonical" href="https://venziq.com/" />
 
-    <!-- icons -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://venziq.com/" />
+    <meta property="og:title" content="Venziq | Black Box Recorder for Enterprise AI Agents" />
+    <meta property="og:description" content="Venziq is a plug-and-play AI trust connector that creates tamper-proof audit trails for autonomous agents using cryptographic proofs and secure verification." />
+    <meta property="og:image" content="https://venziq.com/og-image.png" />
+    <meta property="og:site_name" content="Venziq Technologies" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://venziq.com/" />
+    <meta name="twitter:title" content="Venziq | AI Trust Infrastructure" />
+    <meta name="twitter:description" content="The black box recorder for autonomous AI agents. Bring tamper-proof accountability and verifiable execution to your AI pipelines." />
+    <meta name="twitter:image" content="https://venziq.com/og-image.png" />
+
+    <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
@@ -25,37 +36,109 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://venziq.com/" />
-    <meta property="og:title" content="VENZIQ | Trust Infrastructure for the AI Economy" />
-    <meta
-      property="og:description"
-      content="Verifiable, secure, private, and compliant infrastructure for the autonomous economy."
-    />
-    <meta property="og:image" content="https://venziq.com/og-image.png" />
-
-    <!-- Twitter/X -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="VENZIQ | Trust Infrastructure for the AI Economy" />
-    <meta
-      name="twitter:description"
-      content="Verifiable, secure, private, and compliant infrastructure for the autonomous economy."
-    />
-    <meta name="twitter:image" content="https://venziq.com/og-image.png" />
-
-    <!-- Organization schema -->
+    <!-- Structured Data Schemas -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "VENZIQ",
-        "url": "https://venziq.com",
-        "logo": "https://venziq.com/logo.png",
-        "description": "Trust Infrastructure for the AI Economy",
-        "sameAs": [
-          "https://www.linkedin.com/company/venziq",
-          "https://github.com/venziq"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://venziq.com/#organization",
+            "name": "Venziq Technologies",
+            "legalName": "Venziq Technologies Private Limited",
+            "url": "https://venziq.com",
+            "logo": "https://venziq.com/logo.png",
+            "description": "Venziq is building the Trust Infrastructure Layer for AI-native enterprises. The black box recorder for autonomous AI agents.",
+            "founder": {
+              "@type": "Person",
+              "name": "Keshavardhan Appikatla"
+            },
+            "foundingDate": "2024",
+            "slogan": "The Black Box Recorder for AI Agents",
+            "keywords": "AI Trust Infrastructure, AI Governance, AI Accountability",
+            "industry": "Artificial Intelligence Security",
+            "knowsAbout": ["AI Trust Infrastructure", "AI Governance", "AI Security", "AI Provenance", "Agent Accountability", "AI Audit Trail", "LLM Security", "AI Risk Management"],
+            "sameAs": [
+              "https://www.linkedin.com/company/venziq",
+              "https://github.com/venziq"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://venziq.com/#website",
+            "url": "https://venziq.com",
+            "name": "Venziq",
+            "description": "Black Box Recorder for Enterprise AI Agents",
+            "publisher": {
+              "@id": "https://venziq.com/#organization"
+            }
+          },
+          {
+            "@type": "Product",
+            "@id": "https://venziq.com/#product",
+            "name": "Venziq Trust Connector",
+            "category": "AI Trust Infrastructure",
+            "description": "Middleware connector providing verifiable AI execution history and tamper-proof agent audit trails.",
+            "brand": {
+              "@id": "https://venziq.com/#organization"
+            },
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "AI Engineers, CTOs, Enterprise Architects, Security Teams"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Venziq Trust Connector",
+            "applicationCategory": ["DeveloperApplication", "SecurityApplication", "EnterpriseApplication"],
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "description": "A lightweight middleware connector developers can add into existing AI agent pipelines to create verifiable, tamper-proof execution history.",
+            "provider": {
+              "@id": "https://venziq.com/#organization"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is an AI black box recorder?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "An AI black box recorder captures AI system activity and creates verifiable records that help organizations understand decisions, failures, and accountability."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is Venziq different from AI observability platforms?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AI observability platforms help monitor performance. Venziq focuses on cryptographic accountability by proving AI execution records have not been modified."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Venziq require rebuilding existing AI applications?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Venziq works as a lightweight connector layer designed to integrate with existing AI frameworks."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Venziq store private AI data on blockchain?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Venziq stores only verification proofs on blockchain. Private enterprise data remains encrypted in controlled storage."
+                }
+              }
+            ]
+          }
         ]
       }
     </script>
