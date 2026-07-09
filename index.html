@@ -77,30 +77,49 @@
             "@type": "Product",
             "@id": "https://venziq.com/#product",
             "name": "Venziq Trust Connector",
+            "description": "AI trust infrastructure connector providing verifiable execution history, AI agent accountability, and tamper-proof audit trails.",
             "category": "AI Trust Infrastructure",
-            "description": "Middleware connector providing verifiable AI execution history and tamper-proof agent audit trails.",
             "brand": {
-              "@id": "https://venziq.com/#organization"
+              "@type": "Brand",
+              "name": "Venziq Technologies"
             },
             "audience": {
               "@type": "Audience",
-              "audienceType": "AI Engineers, CTOs, Enterprise Architects, Security Teams"
+              "audienceType": [
+                "AI Engineers",
+                "CTOs",
+                "Enterprise Architects",
+                "Security Teams"
+              ]
+            },
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "url": "https://venziq.com",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
             }
           },
           {
             "@type": "SoftwareApplication",
             "name": "Venziq Trust Connector",
-            "applicationCategory": ["DeveloperApplication", "SecurityApplication", "EnterpriseApplication"],
+            "applicationCategory": [
+              "DeveloperApplication",
+              "SecurityApplication"
+            ],
             "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "description": "A lightweight middleware connector developers can add into existing AI agent pipelines to create verifiable, tamper-proof execution history.",
             "provider": {
-              "@id": "https://venziq.com/#organization"
-            }
+              "@type": "Organization",
+              "name": "Venziq Technologies"
+            },
+            "featureList": [
+              "AI agent audit trails",
+              "AI provenance tracking",
+              "Cryptographic verification",
+              "Merkle proof verification",
+              "Tamper detection"
+            ]
           },
           {
             "@type": "FAQPage",
