@@ -74,52 +74,26 @@
             }
           },
           {
-            "@type": "Product",
-            "@id": "https://venziq.com/#product",
-            "name": "Venziq Trust Connector",
-            "description": "AI trust infrastructure connector providing verifiable execution history, AI agent accountability, and tamper-proof audit trails.",
-            "category": "AI Trust Infrastructure",
-            "brand": {
-              "@type": "Brand",
-              "name": "Venziq Technologies"
-            },
-            "audience": {
-              "@type": "Audience",
-              "audienceType": [
-                "AI Engineers",
-                "CTOs",
-                "Enterprise Architects",
-                "Security Teams"
-              ]
-            },
-            "isAccessibleForFree": true,
-            "offers": {
-              "@type": "Offer",
-              "url": "https://venziq.com",
-              "price": "0",
-              "priceCurrency": "USD",
-              "availability": "https://schema.org/InStock"
-            }
-          },
-          {
             "@type": "SoftwareApplication",
             "name": "Venziq Trust Connector",
             "applicationCategory": [
               "DeveloperApplication",
-              "SecurityApplication"
+              "SecurityApplication",
+              "BusinessApplication"
             ],
-            "operatingSystem": "Any",
-            "provider": {
-              "@type": "Organization",
-              "name": "Venziq Technologies"
-            },
+            "operatingSystem": "Cloud / API / SDK",
+            "description": "Venziq Trust Connector is AI trust infrastructure that creates tamper-proof audit trails and verifiable execution history for autonomous AI agents.",
             "featureList": [
               "AI agent audit trails",
               "AI provenance tracking",
               "Cryptographic verification",
               "Merkle proof verification",
-              "Tamper detection"
-            ]
+              "Tamper detection",
+              "AI governance support"
+            ],
+            "provider": {
+              "@id": "https://venziq.com/#organization"
+            }
           },
           {
             "@type": "FAQPage",
@@ -134,7 +108,15 @@
               },
               {
                 "@type": "Question",
-                "name": "How is Venziq different from AI observability platforms?",
+                "name": "How does AI agent auditing work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Venziq captures execution metadata, encrypts the evidence, generates content fingerprints, and anchors Merkle proofs to independent trust layers for verification."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is Venziq different from observability platforms?",
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "AI observability platforms help monitor performance. Venziq focuses on cryptographic accountability by proving AI execution records have not been modified."
@@ -142,18 +124,10 @@
               },
               {
                 "@type": "Question",
-                "name": "Does Venziq require rebuilding existing AI applications?",
+                "name": "Does Venziq require rebuilding existing AI agents?",
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "No. Venziq works as a lightweight connector layer designed to integrate with existing AI frameworks."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does Venziq store private AI data on blockchain?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. Venziq stores only verification proofs on blockchain. Private enterprise data remains encrypted in controlled storage."
                 }
               }
             ]
