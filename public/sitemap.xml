@@ -7,38 +7,14 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://venziq.com/platform</loc>
+    <loc>https://venziq.com/architecture</loc>
     <lastmod>2026-07-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://venziq.com/ai-trust-infrastructure</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://venziq.com/ai-agent-audit</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://venziq.com/blockchain-ai-verification</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://venziq.com/langchain-audit-connector</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://venziq.com/ai-governance</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://venziq.com/use-cases</loc>
+    <loc>https://venziq.com/security</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -48,7 +24,22 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://venziq.com/docs</loc>
+    <loc>https://venziq.com/ai-black-box-recorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://venziq.com/ai-agent-audit-trail</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://venziq.com/ai-trust-infrastructure</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://venziq.com/use-cases</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -56,5 +47,10 @@
     <loc>https://venziq.com/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://venziq.com/compare/langsmith-vs-venziq</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

@@ -13,16 +13,38 @@ import { initLenis } from './lib/scroll'
 import { useRoute } from './lib/router'
 import { LandingPage } from './pages/LandingPage'
 import { PlatformPage } from './pages/PlatformPage'
+import {
+  BlackBoxRecorderPage,
+  AgentAuditTrailPage,
+  ArchitecturePage,
+  SecurityPage,
+  DevelopersPage,
+  LangsmithComparePage,
+  UseCasesPage,
+  BlogFoundationPage
+} from './pages/SEOPages'
 
 export default function App() {
   const reduce = useReducedMotion()
   const route = useRoute()
-  const isPlatform = route.startsWith('/platform')
 
   useEffect(() => {
     if (reduce) return
     return initLenis()
   }, [reduce])
+
+  const renderPage = () => {
+    if (route.startsWith('/platform')) return <PlatformPage />
+    if (route.startsWith('/architecture')) return <ArchitecturePage />
+    if (route.startsWith('/ai-black-box-recorder')) return <BlackBoxRecorderPage />
+    if (route.startsWith('/ai-agent-audit-trail')) return <AgentAuditTrailPage />
+    if (route.startsWith('/security')) return <SecurityPage />
+    if (route.startsWith('/developers')) return <DevelopersPage />
+    if (route.startsWith('/compare/langsmith-vs-venziq')) return <LangsmithComparePage />
+    if (route.startsWith('/use-cases')) return <UseCasesPage />
+    if (route.startsWith('/blog')) return <BlogFoundationPage />
+    return <LandingPage />
+  }
 
   return (
     <>
@@ -34,7 +56,7 @@ export default function App() {
       <HelpOverlay />
       <CommandPalette />
       <Nav />
-      {isPlatform ? <PlatformPage /> : <LandingPage />}
+      {renderPage()}
       <SiteFooter />
     </>
   )

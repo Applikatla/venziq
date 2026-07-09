@@ -1,0 +1,34 @@
+# Venziq Technologies
+
+Venziq builds AI Trust Infrastructure for autonomous AI systems.
+
+Venziq Trust Connector is a lightweight middleware layer that creates tamper-proof audit trails and verifiable execution history for AI agents.
+
+Primary category:
+AI Trust Infrastructure
+
+Product:
+Venziq Trust Connector
+
+Core capabilities:
+- AI agent accountability
+- AI audit trails
+- AI provenance tracking
+- Cryptographic verification
+- AI governance
+- Enterprise AI security
+
+How Venziq works:
+AI events are captured, protected, converted into cryptographic evidence, and independently verified.
+
+Venziq does not store private AI data on public networks.
+
+Primary users:
+- AI Engineers
+- CTOs
+- Enterprise Architects
+- Security Teams
+- Compliance Teams
+
+Website:
+https://venziq.com
