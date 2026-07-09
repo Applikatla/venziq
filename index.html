@@ -4,20 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Venziq | Make every AI action provable</title>
-    <meta
-      name="description"
-      content="VENZIQ is trust infrastructure for the AI economy. Verifiable, secure, private, and compliant infrastructure for autonomous AI agents. It brings AI security, AI agents, zero-knowledge, and a blockchain trust layer together in one platform."
-    />
-    <meta
-      name="keywords"
-      content="AI Security, AI Agents, Blockchain Infrastructure, Zero Knowledge Proofs, Enterprise AI, Trust Infrastructure, Venziq"
-    />
-    <meta name="author" content="VENZIQ" />
+    <!-- Primary Meta Tags -->
+    <title>Venziq | AI Trust Infrastructure & Agent Audit Trail</title>
+    <meta name="title" content="Venziq | AI Trust Infrastructure & Agent Audit Trail" />
+    <meta name="description" content="Venziq provides AI trust infrastructure, tamper-proof agent audit trails, and accountability platforms for enterprise AI. Verify autonomous AI actions with cryptographic proofs." />
+    <meta name="keywords" content="AI trust infrastructure, AI agent audit trail, AI agent monitoring, AI accountability platform, AI governance infrastructure, blockchain AI audit, verifiable AI execution, decentralized AI audit trail, LangChain audit logging" />
+    <meta name="author" content="Venziq Technologies" />
     <meta name="theme-color" content="#0a0d12" />
     <link rel="canonical" href="https://venziq.com/" />
 
-    <!-- icons -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://venziq.com/" />
+    <meta property="og:title" content="Venziq | AI Trust Infrastructure for Autonomous Agents" />
+    <meta property="og:description" content="Venziq provides tamper-proof audit trails and cryptographic accountability for AI agents. Build trust in your AI workflows with our lightweight connector." />
+    <meta property="og:image" content="https://venziq.com/og-image.png" />
+    <meta property="og:site_name" content="Venziq Technologies" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://venziq.com/" />
+    <meta name="twitter:title" content="Venziq | AI Trust Infrastructure" />
+    <meta name="twitter:description" content="The Trust Infrastructure Layer for AI-native enterprises. Bring tamper-proof accountability and verifiable execution to your AI pipelines." />
+    <meta name="twitter:image" content="https://venziq.com/og-image.png" />
+
+    <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
@@ -25,37 +36,77 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://venziq.com/" />
-    <meta property="og:title" content="VENZIQ | Trust Infrastructure for the AI Economy" />
-    <meta
-      property="og:description"
-      content="Verifiable, secure, private, and compliant infrastructure for the autonomous economy."
-    />
-    <meta property="og:image" content="https://venziq.com/og-image.png" />
-
-    <!-- Twitter/X -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="VENZIQ | Trust Infrastructure for the AI Economy" />
-    <meta
-      name="twitter:description"
-      content="Verifiable, secure, private, and compliant infrastructure for the autonomous economy."
-    />
-    <meta name="twitter:image" content="https://venziq.com/og-image.png" />
-
-    <!-- Organization schema -->
+    <!-- Structured Data Schemas -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "VENZIQ",
-        "url": "https://venziq.com",
-        "logo": "https://venziq.com/logo.png",
-        "description": "Trust Infrastructure for the AI Economy",
-        "sameAs": [
-          "https://www.linkedin.com/company/venziq",
-          "https://github.com/venziq"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://venziq.com/#organization",
+            "name": "Venziq Technologies Private Limited",
+            "url": "https://venziq.com",
+            "logo": "https://venziq.com/logo.png",
+            "description": "Venziq is building the Trust Infrastructure Layer for AI-native enterprises. A lightweight, plug-and-play AI trust connector that provides tamper-proof accountability.",
+            "sameAs": [
+              "https://www.linkedin.com/company/venziq",
+              "https://github.com/venziq"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://venziq.com/#website",
+            "url": "https://venziq.com",
+            "name": "Venziq",
+            "description": "AI Trust Infrastructure & Agent Audit Trail",
+            "publisher": {
+              "@id": "https://venziq.com/#organization"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Venziq AI Trust Connector",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "description": "A lightweight middleware connector developers can add without rebuilding their AI architecture to capture AI execution events and store encrypted audit evidence.",
+            "provider": {
+              "@id": "https://venziq.com/#organization"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is AI trust infrastructure?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AI trust infrastructure is a foundation layer that helps enterprises verify, audit, and secure autonomous AI agent operations using cryptographic proofs and blockchain-backed accountability."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do companies audit AI agents?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Companies audit AI agents by connecting a trust layer like Venziq to AI workflows, which captures execution metadata, creates cryptographic proofs, and stores evidence securely."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you prevent AI logs from being modified?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AI logs are prevented from being modified through cryptographic verification and blockchain anchoring. Venziq generates cryptographic fingerprints and Merkle tree batching to create a tamper-proof audit trail."
+                }
+              }
+            ]
+          }
         ]
       }
     </script>
