@@ -1,3 +1,5 @@
+"use client"
+
 import type { ReactNode } from 'react'
 import { useReducedMotion } from 'motion/react'
 import { useReveal } from '../lib/useReveal'

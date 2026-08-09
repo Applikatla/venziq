@@ -1,3 +1,5 @@
+"use client"
+
 import { lazy, Suspense } from 'react'
 import { ScrollReveal } from '../components/ScrollReveal'
 import { MagneticButton } from '../components/MagneticButton'

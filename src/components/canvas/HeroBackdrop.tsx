@@ -1,3 +1,5 @@
+"use client"
+
 import { lazy, Suspense, useState } from 'react'
 import { useReducedMotion } from 'motion/react'
 import { AsciiField } from './AsciiField'

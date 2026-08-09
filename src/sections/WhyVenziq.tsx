@@ -1,3 +1,5 @@
+"use client"
+
 import { useRef, useState, type PointerEvent } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { Rocket, Share2, Database, Cable, KeyRound, Landmark, Check, type LucideIcon } from 'lucide-react'

@@ -1,3 +1,5 @@
+"use client"
+
 import { useMemo } from 'react'
 import { useTheme } from './theme-context'
 
@@ -13,6 +15,7 @@ export interface ThemeColors {
 }
 
 function read(name: string): string {
+  if (typeof document === 'undefined') return ''
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
 }
 

@@ -1,3 +1,5 @@
+"use client"
+
 import { AnimatePresence, motion } from 'motion/react'
 import { ShieldCheck, ShieldAlert } from 'lucide-react'
 import { useUnprotected, toggleProtection } from '../lib/protection'

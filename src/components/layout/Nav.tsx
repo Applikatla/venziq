@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Menu, X, Command, ArrowUpRight } from 'lucide-react'
@@ -9,7 +11,7 @@ import { NAV_LINKS, LANDING_LINKS, openContact } from '../../lib/nav'
 import { scrollToId, scrollToTop } from '../../lib/scroll'
 import { useActiveSection } from '../../lib/useActiveSection'
 import { useTrust } from '../../lib/trust-context'
-import { navigate, useRoute } from '../../lib/router'
+import { useRouter, usePathname } from 'next/navigation'
 
 function SessionDot() {
   const { verified, total } = useTrust()
@@ -36,7 +38,7 @@ export function Nav() {
   const [open, setOpen] = useState(false)
   const reduce = useReducedMotion()
   const active = useActiveSection()
-  const route = useRoute()
+  const route = usePathname()
   const isPlatform = route.startsWith('/platform')
   const links = isPlatform ? NAV_LINKS : LANDING_LINKS
 
@@ -67,12 +69,12 @@ export function Nav() {
   }
   const goHome = () => {
     setOpen(false)
-    if (isPlatform) navigate('/')
+    if (isPlatform) useRouter().push('/')
     else scrollToTop()
   }
   const goPlatform = () => {
     setOpen(false)
-    navigate('/platform')
+    useRouter().push('/platform')
   }
 
   return (

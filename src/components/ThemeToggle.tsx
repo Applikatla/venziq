@@ -1,3 +1,5 @@
+"use client"
+
 import { motion, useReducedMotion } from 'motion/react'
 import { useTheme } from '../lib/theme-context'
 import { LogoMark } from './Logo'
