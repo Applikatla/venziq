@@ -27,3 +27,6 @@ dist-ssr
 *.bak
 
 scripts/
+
+# Next.js build output
+.next/
