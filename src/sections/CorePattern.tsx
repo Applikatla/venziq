@@ -1,3 +1,5 @@
+"use client"
+
 import { Fragment, useState } from 'react'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
 import { Plus } from 'lucide-react'

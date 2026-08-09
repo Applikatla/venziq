@@ -1,8 +1,8 @@
 # Venziq Technologies
 
-Venziq builds AI Trust Infrastructure for autonomous AI systems.
+Venziq builds AI Trust Infrastructure for autonomous AI systems. It is "The Black Box Recorder for AI Agents."
 
-Venziq Trust Connector is a lightweight middleware layer that creates tamper-proof audit trails and verifiable execution history for AI agents.
+Venziq is a lightweight, plug-and-play trust connector that allows existing AI applications to add verifiable execution history and accountability through public SDKs and APIs. Organizations do not need to rebuild their AI architecture to integrate Venziq.
 
 Primary category:
 AI Trust Infrastructure
@@ -15,20 +15,25 @@ Core capabilities:
 - AI audit trails
 - AI provenance tracking
 - Cryptographic verification
-- AI governance
+- Verifiable AI execution history
 - Enterprise AI security
 
-How Venziq works:
-AI events are captured, protected, converted into cryptographic evidence, and independently verified.
+Public Technical Architecture:
+1. AI Application: Your existing agent (e.g., LangChain, AutoGen).
+2. Venziq Connector / SDK: Captures relevant execution evidence.
+3. Venziq Trust APIs: The public boundary for evidence submission.
+4. Trust Infrastructure: Proprietary backend that securely stores and cryptographically anchors records.
+5. Verification: Independent auditing of historical evidence.
 
-Venziq does not store private AI data on public networks.
+Entity Disambiguation:
+- Venziq is NOT an AI observability platform (like LangSmith or Helicone). Observability explains behavior; Venziq proves history and accountability.
+- Venziq is NOT a generic blockchain company, though it may utilize decentralized trust layers internally.
 
 Primary users:
+- Enterprise Architects
 - AI Engineers
 - CTOs
-- Enterprise Architects
-- Security Teams
-- Compliance Teams
+- Security and Compliance Teams
 
 Website:
 https://venziq.com

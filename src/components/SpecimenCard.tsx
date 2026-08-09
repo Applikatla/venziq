@@ -1,3 +1,5 @@
+"use client"
+
 import { useRef, useState, type ReactNode, type PointerEvent } from 'react'
 import { motion, useMotionValue, useSpring, useReducedMotion } from 'motion/react'
 

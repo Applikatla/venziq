@@ -1,3 +1,5 @@
+"use client"
+
 import { useRef, type PointerEvent } from 'react'
 import {
   motion,

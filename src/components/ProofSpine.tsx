@@ -1,3 +1,5 @@
+"use client"
+
 import { motion, useReducedMotion } from 'motion/react'
 import { Check } from 'lucide-react'
 import { TRACKED, useTrust } from '../lib/trust-context'

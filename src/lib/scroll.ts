@@ -1,3 +1,5 @@
+"use client"
+
 import Lenis from 'lenis'
 
 let lenis: Lenis | null = null

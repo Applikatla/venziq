@@ -1,3 +1,5 @@
+"use client"
+
 export const COMMAND_OPEN_EVENT = 'venziq-open-command'
 export const HELP_OPEN_EVENT = 'venziq-open-help'
 

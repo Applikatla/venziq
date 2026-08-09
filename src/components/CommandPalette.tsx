@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Search, ArrowRight, CornerDownLeft } from 'lucide-react'

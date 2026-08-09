@@ -1,7 +1,7 @@
 import type { MouseEvent, ReactNode } from 'react'
-import { navigate } from '../lib/router'
+import Link from 'next/link'
 
-/** Anchor that navigates client-side (keeps a real href for accessibility / new-tab). */
+/** Anchor that navigates client-side using next/link. */
 export function RouteLink({
   to,
   className,
@@ -13,15 +13,9 @@ export function RouteLink({
   children: ReactNode
   'aria-label'?: string
 }) {
-  const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    // let modified clicks (new tab, etc.) behave natively
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
-    e.preventDefault()
-    navigate(to)
-  }
   return (
-    <a href={to} onClick={onClick} className={className} aria-label={ariaLabel}>
+    <Link href={to} className={className} aria-label={ariaLabel}>
       {children}
-    </a>
+    </Link>
   )
 }

@@ -1,3 +1,5 @@
+"use client"
+
 import { useAnimatedCanvas, type Renderer } from './useAnimatedCanvas'
 import { useThemeColors, withAlpha } from '../../lib/themeColors'
 

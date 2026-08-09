@@ -1,3 +1,5 @@
+"use client"
+
 import { useMemo, useState } from 'react'
 import { useReducedMotion } from 'motion/react'
 import { Landmark, HeartPulse, Building2, RotateCw, Check, type LucideIcon } from 'lucide-react'

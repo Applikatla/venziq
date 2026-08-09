@@ -1,3 +1,5 @@
+"use client"
+
 import { motion, useReducedMotion } from 'motion/react'
 import { ShieldCheck, FileCheck2, Boxes, ArrowRight } from 'lucide-react'
 import { Hero } from '../sections/Hero'

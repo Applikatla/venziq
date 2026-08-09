@@ -1,3 +1,5 @@
+"use client"
+
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useTrust } from '../../lib/trust-context'
 import { LogoMark } from '../Logo'
